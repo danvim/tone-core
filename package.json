@@ -1,0 +1,24 @@
+{
+  "name": "tone-core",
+  "version": "0.0.1",
+  "description": "Data structure for tone-server and tone",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danvim/tone-core.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danvim/tone-core/issues"
+  },
+  "homepage": "https://github.com/danvim/tone-core#readme",
+  "devDependencies": {
+    "typescript": "^3.3.3333"
+  }
+}
