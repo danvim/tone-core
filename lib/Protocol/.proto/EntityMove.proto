@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message EntityMove {
+  string uid = 1;
+  int32 x = 1;
+  int32 y = 2;
+  int32 z = 3;
+  int32 yaw = 4;
+  int32 pitch = 5;
+  int32 vx = 6;
+  int32 vy = 7;
+  int32 vz = 8;
+}

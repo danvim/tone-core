@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message MoveUnit {
+  string uid = 1;
+  int32 targetX = 2;
+  int32 targetY = 3;
+}
