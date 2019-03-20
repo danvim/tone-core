@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,18 @@
   },
   "homepage": "https://github.com/danvim/tone-core#readme",
   "devDependencies": {
+    "express": "^4.16.4",
+    "jest": "^24.5.0",
     "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "@types/jest": "^24.0.11",
+    "blob-polyfill": "^3.0.20180112",
+    "peer": "^0.2.10",
+    "peerjs": "^0.3.24",
+    "peerjs-nodejs": "^1.1.3",
+    "protobufjs": "^6.8.8",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   }
 }

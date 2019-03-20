@@ -1,0 +1,7 @@
+// hello.proto
+package hello;
+syntax = "proto3";
+
+message HelloMessAge {
+  string message = 1;
+}
