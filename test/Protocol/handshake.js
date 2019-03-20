@@ -1,18 +1,52 @@
 const serverCallbacks = [];
 const clientCallbacks = [];
 
+const {
+  Protocol: { encodeMessage, decodeMessage }
+} = require("../../lib");
+
+const pushServer = fn => {
+  const id = serverCallbacks.length;
+  serverCallbacks.push((k, data) => {
+    if (k == id) fn(data);
+  });
+};
+
+const pushClient = fn => {
+  const id = clientCallbacks.length;
+  clientCallbacks.push((k, conn) => {
+    if (k == id) fn(conn);
+  });
+};
+
 module.exports = (serverPeer, clientPeer) => {
   it("handshake", () => {
-    serverPeer.on("connection", conn => {
-      conn.serialization = "none";
-      conn.on("data", data => {
-        expect(data).toBe("hello");
-      });
+    pushServer(data => {
+      expect(data).toBe("hello");
     });
-    const conn = clientPeer.connect("server");
-    conn.serialization = "none";
-    conn.on("open", () => {
+    pushClient(conn => {
       conn.send("hello");
     });
+  });
+  it("handshake", () => {
+    pushServer(data => {
+      expect(decodeMessage(data)).toBe("Message");
+    });
+    pushClient(conn => {
+      conn.send(encodeMessage("Message"));
+    });
+  });
+  serverPeer.on("connection", conn => {
+    conn.serialization = "none";
+    conn.on("data", data => {
+      serverCallbacks.forEach((f, k) => f(k, data));
+      setTimeout(() => conn.close(), 300);
+    });
+  });
+  const conn = clientPeer.connect("server");
+  conn.serialization = "none";
+  conn.on("open", () => {
+    clientCallbacks.forEach((f, k) => f(k, conn));
+    conn.close();
   });
 };

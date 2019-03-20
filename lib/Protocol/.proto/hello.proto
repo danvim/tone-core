@@ -2,6 +2,6 @@
 package hello;
 syntax = "proto3";
 
-message HelloMessAge {
+message HelloMessage {
   string message = 1;
 }
