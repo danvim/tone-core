@@ -10,10 +10,11 @@ export class Protocol {
   listeners: { [type: number]: ProtocolCallback };
   constructor(conn: Conn) {
     this.conn = conn;
+    conn.on("data", (data: ArrayBuffer) => {
+      const type = data.slice(0, 1);
+      this.listeners[Number(type)](data.slice(1));
+    });
     this.listeners = [];
-  }
-  async init() {
-    // await Protobuf.awaitInitDone();
   }
   on(event: number, callback: ProtocolCallback) {
     this.listeners[event] = callback;

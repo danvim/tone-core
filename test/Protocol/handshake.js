@@ -1,11 +1,23 @@
 const serverCallbacks = [];
+const serverConnectCallbacks = [];
 const clientCallbacks = [];
 
 const { encodeMessage, decodeMessage } = require("../../lib/Protocol/Protobuf");
+const { PackageTypes } = require("../../lib/Protocol/PackageTypes");
+const { Protocol } = require("../../lib/Protocol");
 
 const pushServer = fn => {
   const id = serverCallbacks.length;
   serverCallbacks.push((k, data) => {
+    if (k == id) fn(data);
+  });
+  serverConnectCallbacks.push(() => {});
+};
+
+const pushServerConnect = fn => {
+  const id = serverCallbacks.length;
+  serverCallbacks.push(() => {});
+  serverConnectCallbacks.push((k, data) => {
     if (k == id) fn(data);
   });
 };
@@ -18,7 +30,7 @@ const pushClient = fn => {
 };
 
 module.exports = (serverPeer, clientPeer) => {
-  it("handshake", () => {
+  it("basic", () => {
     pushServer(data => {
       expect(data).toBe("hello");
     });
@@ -26,7 +38,7 @@ module.exports = (serverPeer, clientPeer) => {
       conn.send("hello");
     });
   });
-  it("handshake", () => {
+  it("encoder", () => {
     pushServer(data => {
       expect(decodeMessage(data)).toBe("Message");
     });
@@ -34,8 +46,23 @@ module.exports = (serverPeer, clientPeer) => {
       conn.send(encodeMessage("Message"));
     });
   });
+  let serverProtocol;
+  it("protocol on TryJoinLobby", () => {
+    pushServerConnect((k, conn) => {
+      serverProtocol = new Protocol(conn);
+      serverProtocol.on(PackageTypes.TryJoinLobby, obj => {
+        expect(obj.username).toBe("Dipsy");
+      });
+    });
+    pushClient((k, conn) => {
+      let clientProtocol = new Protocol(conn);
+      clientProtocol.TryJoinLobby("Dipsy");
+      clientProtocol.TryStartGame();
+    });
+  });
   serverPeer.on("connection", conn => {
     conn.serialization = "none";
+    serverConnectCallbacks.forEach((f, k) => f(k, conn));
     conn.on("data", data => {
       serverCallbacks.forEach((f, k) => f(k, data));
       setTimeout(() => conn.close(), 300);
