@@ -1,5 +1,5 @@
 syntax = "proto3";
 
 message AssignId {
-  int32 id = 1;
+  int32 playerId = 1;
 }

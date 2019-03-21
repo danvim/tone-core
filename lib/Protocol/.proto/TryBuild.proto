@@ -3,5 +3,5 @@ syntax = "proto3";
 message TryBuild {
   int32 x = 1;
   int32 y = 2;
-  int32 type = 3;
+  int32 buildingType = 3;
 }

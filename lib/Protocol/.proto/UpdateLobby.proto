@@ -2,5 +2,5 @@ syntax = "proto3";
 
 message UpdateLobby {
   int32 playerid = 1;
-  string name = 2;
+  string username = 2;
 }
