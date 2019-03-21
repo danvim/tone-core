@@ -6,4 +6,6 @@ const main = async () => {
   Protocol.encodeMessage("hello");
 };
 
+main();
+
 module.exports = { Protocol };

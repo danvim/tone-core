@@ -1,9 +1,7 @@
 const serverCallbacks = [];
 const clientCallbacks = [];
 
-const {
-  Protocol: { encodeMessage, decodeMessage }
-} = require("../../lib");
+const { encodeMessage, decodeMessage } = require("../../lib/Protocol/Protobuf");
 
 const pushServer = fn => {
   const id = serverCallbacks.length;

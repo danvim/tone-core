@@ -1,37 +1,34 @@
-import * as protobuf from "protobufjs";
-import { readdirSync } from "fs";
+import { PackageTypes } from "./PackageTypes";
+import Conn = PeerJs.DataConnection;
+// import Peer from Peer.
+const Protobuf = require("./Protobuf");
 
-const decoder: { [s: string]: (buffer: Uint8Array) => object } = {};
-const encoder: { [s: string]: (data: object) => Uint8Array } = {};
+type ProtocolCallback = (data: object) => any;
 
-async function init() {
-  console.log("init protobuf");
-  const items = readdirSync(__dirname + "/.proto/");
-  console.log(items);
-  await Promise.all(
-    items
-      .map(item => {
-        const m = item.match(/(.+).proto$/);
-        if (m && m[1]) {
-          return m[1];
-        } else {
-          return null;
-        }
-      })
-      .filter((l: string | null) => l !== null)
-      // @ts-ignore
-      .map(loadProto)
-  );
+export class Protocol {
+  conn: Conn;
+  listeners: { [type: number]: ProtocolCallback };
+  constructor(conn: Conn) {
+    this.conn = conn;
+    this.listeners = [];
+  }
+  async init() {
+    // await Protobuf.awaitInitDone();
+  }
+  on(event: number, callback: ProtocolCallback) {
+    this.listeners[event] = callback;
+  }
+  TryJoinLobby(username: string) {
+    this.conn.send(
+      PackageTypes.TryJoinLobby + Protobuf.encodeTryJoinLobby({ username })
+    );
+  }
+  TryCustomize(Customization: object) {
+    this.conn.send(
+      PackageTypes.TryCustomize + Protobuf.encodeTryCustomize(Customization)
+    );
+  }
+  TryStartGame() {
+    this.conn.send(PackageTypes.TryStartGame + Protobuf.encodeTryStartGame());
+  }
 }
-
-async function loadProto(name: string) {
-  const root = await protobuf.load(`./proto/${name}.proto`);
-  const Message = root.lookupType(name);
-  encoder["encode" + name] = (object: object) =>
-    Message.encode(Message.create(object)).finish();
-  decoder["decode" + name] = (buffer: Uint8Array) => Message.decode(buffer);
-}
-
-init();
-
-export default { init, ...decoder, ...encoder };

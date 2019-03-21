@@ -31,11 +31,19 @@ const main = async () => {
     port: PORT,
     path: "/peer"
   });
-  // test("hi", () => {
-  require("./handshake")(serverPeer, clientPeer);
-  // expect(1).toMatch(1);
+  const pb = require("../../lib/Protocol/Protobuf").default;
+  // test("init protobuf", async () => {
+  //   await pb.awaitInitDone();
+  //   expect(pb.initState).toBe(2);
   // });
-  await http.listen(PORT);
+  // await pb.awaitInitDone();
+  require("./handshake")(serverPeer, clientPeer);
+  console.log("hi");
+  try {
+    await http.listen(PORT);
+  } catch (e) {
+    console.log(e);
+  }
   console.log("listening on " + PORT);
   await new Promise(
     res =>
