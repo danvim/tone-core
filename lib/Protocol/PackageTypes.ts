@@ -1,0 +1,19 @@
+export enum PackageTypes {
+  AssignId,
+  Build,
+  Customize,
+  EntityMove,
+  Message,
+  MoveUnit,
+  StartGame,
+  SetAnimation,
+  TryAttack,
+  TryBuild,
+  TryCustomize,
+  TryDefend,
+  TryJoinLobby,
+  TrySetPolicy,
+  TryStartGame,
+  UpdateHealth,
+  UpdateLobby
+}

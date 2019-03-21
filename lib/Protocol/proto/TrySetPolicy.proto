@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message TrySetPolicy {
+  int32 policyId = 1;
+}
