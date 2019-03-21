@@ -1,11 +1,6 @@
-const Protocol = require("./Protocol");
+import Protocol from "./Protocol";
+import Coordinates from "./Coordinates";
+import Game from "./Game";
 
-const main = async () => {
-  await Protocol.init();
-  console.log(Protocol);
-  Protocol.encodeMessage("hello");
-};
-
-main();
-
-module.exports = { Protocol };
+export default { Protocol, Coordinates, Game };
+export { Protocol, Coordinates, Game };

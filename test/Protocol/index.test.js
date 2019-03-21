@@ -38,21 +38,12 @@ const main = async () => {
   // });
   // await pb.awaitInitDone();
   require("./handshake")(serverPeer, clientPeer);
-  console.log("hi");
   try {
     await http.listen(PORT);
   } catch (e) {
     console.log(e);
   }
   console.log("listening on " + PORT);
-  await new Promise(
-    res =>
-      setTimeout(() => {
-        console.log("timeout");
-        res();
-      }),
-    1000
-  );
 };
 
 main();

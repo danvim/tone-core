@@ -10,10 +10,8 @@ const encoder: { [s: string]: (data: object) => Uint8Array } = {};
 async function init() {
   if (initState === 1) return await awaitInitDone();
   if (initState == 2) return;
-  console.log("init protobuf");
   initState = 1;
-  const items = readdirSync(__dirname + "/.proto/");
-  console.log(items);
+  const items = readdirSync(__dirname + "/proto/");
   initDonePromise = Promise.all(
     items
       .map(item => {
