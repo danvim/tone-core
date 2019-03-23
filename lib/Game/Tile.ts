@@ -1,13 +1,14 @@
 export enum TileType {
   EMPTY,
   VOID,
-  POOL,
-  HALL
+  INFORMATION_CLUSTER,
+  MOUNTAIN,
+  WIRES
 }
 
-export type TileInfo = {
+export interface TileInfo {
   type: TileType;
-  height?: number;
-};
+  height: number;
+}
 
-export type TileMap = { [K in string]: TileInfo };
+export type TileMap = { [k in string]: TileInfo };
