@@ -31,11 +31,15 @@ async function init() {
 }
 
 async function loadProto(name: string) {
-  const root = await protobuf.load(`./proto/${name}.proto`);
-  const Message = root.lookupType(name);
-  encoder["encode" + name] = (object: object) =>
-    Message.encode(Message.create(object)).finish();
-  decoder["decode" + name] = (buffer: Uint8Array) => Message.decode(buffer);
+  try {
+    const root = await protobuf.load(`${__dirname}/proto/${name}.proto`);
+    const Message = root.lookupType(name);
+    encoder["encode" + name] = (object: object) =>
+      Message.encode(Message.create(object)).finish();
+    decoder["decode" + name] = (buffer: Uint8Array) => Message.decode(buffer);
+  } catch (e) {
+    console.log(name, e);
+  }
 }
 
 init();
