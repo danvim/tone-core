@@ -1,7 +1,8 @@
 import { PackageTypes } from "./PackageTypes";
 import Conn = PeerJs.DataConnection;
+var aconcat = require("arraybuffer-concat");
 // import Peer from Peer.
-const Protobuf = require("./Protobuf");
+const Protobuf = require("./Protobuf").default;
 
 type ProtocolCallback = (data: object) => any;
 
@@ -13,20 +14,31 @@ export class Protocol {
     this.listeners = [];
   }
   add(conn: Conn) {
-    conn.on("data", (data: ArrayBuffer) => {
-      const type = data.slice(0, 1);
-      this.listeners[Number(type)](data.slice(1));
+    conn.on("data", (data: Uint8Array) => {
+      console.log("ondata", data);
+      const type = new Uint8Array(data.slice(0, 1))[0];
+      console.log("recieved", type, this.listeners[type]);
+      if (typeof this.listeners[type] == typeof (() => {})) {
+        const buf = new Uint8Array(data.slice(1));
+        console.log("called", PackageTypes[type], buf);
+        const decoded = Protobuf.decoder["decode" + PackageTypes[type]](buf);
+        this.listeners[type](decoded);
+      }
     });
     this.conns.push(conn);
   }
   on(event: number, callback: ProtocolCallback) {
+    console.log("on", event);
     this.listeners[event] = callback;
   }
-  send(buff: ArrayBuffer) {
+  send(buff: Uint8Array) {
+    console.log("send", buff);
     this.conns.forEach(conn => conn.send(buff));
   }
   AssignId(playerId: number) {
-    this.send(PackageTypes.AssignId + Protobuf.encodeAssignId({ playerId }));
+    const buf = Protobuf.encoder.encodeAssignId({ playerId });
+    console.log(buf);
+    this.send(aconcat(new Uint8Array([PackageTypes.AssignId]), buf));
   }
   Build(
     playerId: number,
@@ -37,11 +49,19 @@ export class Protocol {
   ) {
     this.send(
       PackageTypes.Build +
-        Protobuf.encodeBuild({ playerId, uid, buildingType, targetX, targetY })
+        Protobuf.encoder.encodeBuild({
+          playerId,
+          uid,
+          buildingType,
+          targetX,
+          targetY
+        })
     );
   }
   Customize(Customization: { race: number; map: number }) {
-    this.send(PackageTypes.Customize + Protobuf.encodeCustomize(Customization));
+    this.send(
+      PackageTypes.Customize + Protobuf.encoder.encodeCustomize(Customization)
+    );
   }
   EntityMove(
     uid: string,
@@ -56,7 +76,7 @@ export class Protocol {
   ) {
     this.send(
       PackageTypes.EntityMove +
-        Protobuf.encodeEntityMove({
+        Protobuf.encoder.encodeEntityMove({
           uid,
           x,
           y,
@@ -70,65 +90,76 @@ export class Protocol {
     );
   }
   Message(content: string) {
-    this.send(PackageTypes.Message + Protobuf.encodeMessage({ content }));
+    this.send(
+      PackageTypes.Message + Protobuf.encoder.encodeMessage({ content })
+    );
   }
   MoveUnit(uid: string, targetX: number, targetY: number) {
     this.send(
-      PackageTypes.MoveUnit + Protobuf.encodeMoveUnit({ uid, targetX, targetY })
+      PackageTypes.MoveUnit +
+        Protobuf.encoder.encodeMoveUnit({ uid, targetX, targetY })
     );
   }
   StartGame() {
-    this.send(PackageTypes.StartGame + Protobuf.encodeStartGame());
+    this.send(PackageTypes.StartGame + Protobuf.encoder.encodeStartGame());
   }
   SetAnimation(uid: string, animType: number) {
     this.send(
-      PackageTypes.SetAnimation + Protobuf.encodeSetAnimation({ uid, animType })
+      PackageTypes.SetAnimation +
+        Protobuf.encoder.encodeSetAnimation({ uid, animType })
     );
   }
   TryAttack(sourceUid: string, targetUid: string) {
     this.send(
       PackageTypes.TryAttack +
-        Protobuf.encodeTryAttack({ sourceUid, targetUid })
+        Protobuf.encoder.encodeTryAttack({ sourceUid, targetUid })
     );
   }
   TryBuild(x: number, y: number, buildingType: number) {
     this.send(
-      PackageTypes.TryBuild + Protobuf.encodeTryBuild({ x, y, buildingType })
+      PackageTypes.TryBuild +
+        Protobuf.encoder.encodeTryBuild({ x, y, buildingType })
     );
   }
   TryCustomize(Customization: { race: number; map: number }) {
     this.send(
-      PackageTypes.TryCustomize + Protobuf.encodeTryCustomize(Customization)
+      PackageTypes.TryCustomize +
+        Protobuf.encoder.encodeTryCustomize(Customization)
     );
   }
   TryDefend(sourceUid: string, targetX: number, targetY: number) {
     this.send(
       PackageTypes.TryDefend +
-        Protobuf.encodeTryDefend(sourceUid, targetX, targetY)
+        Protobuf.encoder.encodeTryDefend(sourceUid, targetX, targetY)
     );
   }
   TryJoinLobby(username: string) {
     this.send(
-      PackageTypes.TryJoinLobby + Protobuf.encodeTryJoinLobby({ username })
+      PackageTypes.TryJoinLobby +
+        Protobuf.encoder.encodeTryJoinLobby({ username })
     );
   }
   TrySetPolicy(policyId: number) {
     this.send(
-      PackageTypes.TrySetPolicy + Protobuf.encodeTrySetPolicy({ policyId })
+      PackageTypes.TrySetPolicy +
+        Protobuf.encoder.encodeTrySetPolicy({ policyId })
     );
   }
   TryStartGame() {
-    this.send(PackageTypes.TryStartGame + Protobuf.encodeTryStartGame());
+    this.send(
+      PackageTypes.TryStartGame + Protobuf.encoder.encodeTryStartGame()
+    );
   }
   UpdateHealth(uid: string, hp: number) {
     this.send(
-      PackageTypes.UpdateHealth + Protobuf.encodeUpdateHealth({ uid, hp })
+      PackageTypes.UpdateHealth +
+        Protobuf.encoder.encodeUpdateHealth({ uid, hp })
     );
   }
   UpdateLobby(playerId: number, username: string) {
     this.send(
       PackageTypes.UpdateLobby +
-        Protobuf.encodeUpdateLobby({ playerId, username })
+        Protobuf.encoder.encodeUpdateLobby({ playerId, username })
     );
   }
 }
