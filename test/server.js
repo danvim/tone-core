@@ -39,6 +39,9 @@ peer.on("connection", conn => {
   serverProcotocol.on(PackageTypes.AssignId, buf => {
     console.log("beyyyy", buf);
   });
+  serverProcotocol.on(PackageTypes.Message, buf => {
+    console.log("message", buf);
+  });
   // conn.on("data", data => {
   //   console.log("conn1", data);
   //   conn.send(data);
@@ -58,5 +61,7 @@ peer.on("open", () => {
     console.log("send");
     clientProcotocol.add(conn2);
     clientProcotocol.AssignId(2);
+    clientProcotocol.Message("hello");
+    clientProcotocol.emit(PackageTypes.Message, { content: "world" });
   });
 });
