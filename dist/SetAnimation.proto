@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message SetAnimation {
+  string uid = 1;
+  int32 animType = 2;
+}

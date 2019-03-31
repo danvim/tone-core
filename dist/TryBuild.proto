@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message TryBuild {
+  string axialCoords = 1;
+  int32 buildingType = 2;
+}

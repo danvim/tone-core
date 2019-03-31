@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message Build {
+  int32 playerId = 1;
+  string uid = 2;
+  int32 buildingType = 3;
+  string axialCoords = 4;
+  uint32 variant = 5;
+  uint32 progress = 6;
+}
