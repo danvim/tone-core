@@ -1,17 +1,18 @@
 export declare enum TileType {
-    EMPTY = 0,
-    VOID = 1,
-    POOL = 2,
-    HALL = 3
+    VOID = 0,
+    EMPTY = 1,
+    INFORMATION_CLUSTER = 2,
+    MOUNTAIN = 3,
+    WIRES = 4
 }
 export declare enum TileSize {
     SMALL = 0,
     LARGE = 1
 }
-export declare type TileInfo = {
+export interface TileInfo {
     type: TileType;
-    height?: number;
-};
+    height: number;
+}
 export declare type TileMap = {
-    [K in string]: TileInfo;
+    [k in string]: TileInfo;
 };

@@ -15,5 +15,5 @@ export enum PackageType {
   TRY_SET_POLICY,
   TRY_START_GAME,
   UPDATE_HEALTH,
-  UPDATE_LOBBY
+  UPDATE_LOBBY,
 }

@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var TileType;
 (function (TileType) {
-    TileType[TileType["EMPTY"] = 0] = "EMPTY";
-    TileType[TileType["VOID"] = 1] = "VOID";
-    TileType[TileType["POOL"] = 2] = "POOL";
-    TileType[TileType["HALL"] = 3] = "HALL";
+    TileType[TileType["VOID"] = 0] = "VOID";
+    TileType[TileType["EMPTY"] = 1] = "EMPTY";
+    TileType[TileType["INFORMATION_CLUSTER"] = 2] = "INFORMATION_CLUSTER";
+    TileType[TileType["MOUNTAIN"] = 3] = "MOUNTAIN";
+    TileType[TileType["WIRES"] = 4] = "WIRES";
 })(TileType = exports.TileType || (exports.TileType = {}));
 var TileSize;
 (function (TileSize) {

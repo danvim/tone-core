@@ -1,17 +1,17 @@
 /// <reference types="peerjs" />
-import { PackageType } from "./PackageType";
+import { PackageType } from './PackageType';
 import Conn = PeerJs.DataConnection;
 declare type ProtocolCallback = (data: object, conn: Conn) => any;
 declare class Protocol {
-    conns: Array<Conn>;
+    static PackageType: typeof PackageType;
+    conns: Conn[];
     listeners: {
         [type: number]: ProtocolCallback;
     };
-    static PackageType: typeof PackageType;
     constructor();
     add(conn: Conn): void;
     on(event: PackageType, callback: ProtocolCallback): void;
-    emit(event: PackageType, object: Object): void;
+    emit(event: PackageType, object: object): void;
     send(buff: Uint8Array): void;
     AssignId(playerId: number): void;
     Build(playerId: number, uid: string, buildingType: number, axialCoords: string): void;

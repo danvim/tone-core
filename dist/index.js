@@ -19,9 +19,8 @@ var Game_1 = require("./Game");
 exports.Game = Game_1.default;
 exports.default = __assign({}, Protocol_1.default, Coordinates_1.default, Game_1.default);
 module.exports = __assign({}, Protocol_1.default, Coordinates_1.default, Game_1.default);
-var ToneCore;
-(function (ToneCore) {
-    Protocol_1.default;
-    Coordinates_1.default;
-    Game_1.default;
-})(ToneCore = exports.ToneCore || (exports.ToneCore = {}));
+exports.ToneCore = {
+    Protocol: Protocol_1.default,
+    Coordinates: Coordinates_1.default,
+    Game: Game_1.default,
+};
