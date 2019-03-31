@@ -1,11 +1,11 @@
-import { PackageType } from './PackageType';
+import { PackageType } from "./PackageType";
 import Conn = PeerJs.DataConnection;
 // tslint:disable-next-line:no-var-requires
-const aconcat = require('arraybuffer-concat');
+const aconcat = require("arraybuffer-concat");
 // import Peer from Peer.
 // tslint:disable-next-line:no-var-requires
-const Protobuf = require('./Protobuf').default;
-import { UPPER_SNAKE2UpperCamel } from '../helper';
+const Protobuf = require("./Protobuf").default;
+import { UPPER_SNAKE2UpperCamel } from "../helper";
 
 type ProtocolCallback = (data: object, conn: Conn) => any;
 
@@ -18,11 +18,11 @@ class Protocol {
     this.listeners = [];
   }
   public add(conn: Conn) {
-    conn.on('data', (data: Uint8Array) => {
+    conn.on("data", (data: Uint8Array) => {
       // console.log("ondata", data);
       const event = new Uint8Array(data.slice(0, 1))[0];
       // console.log("recieved", type, this.listeners[type]);
-      if (typeof this.listeners[event] === 'function') {
+      if (typeof this.listeners[event] === "function") {
         const buf = new Uint8Array(data.slice(1));
         // console.log("called", PackageType[type], buf);
         // console.log(
@@ -31,7 +31,7 @@ class Protocol {
         //   "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
         // );
         const decoded = Protobuf.decoder[
-          'decode' + UPPER_SNAKE2UpperCamel(PackageType[event])
+          "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
         ](buf);
         this.listeners[event](decoded, conn);
       }
@@ -49,13 +49,13 @@ class Protocol {
     //   "encode" + UPPER_SNAKE2UpperCamel(PackageType[event])
     // );
     const buf = Protobuf.encoder[
-      'encode' + UPPER_SNAKE2UpperCamel(PackageType[event])
+      "encode" + UPPER_SNAKE2UpperCamel(PackageType[event])
     ](object);
     this.send(aconcat(new Uint8Array([event]), buf));
   }
   public send(buff: Uint8Array) {
     // console.log("send", buff);
-    this.conns.forEach((conn) => conn.send(buff));
+    this.conns.forEach(conn => conn.send(buff));
   }
   public AssignId(playerId: number) {
     const buf = Protobuf.encoder.encodeAssignId({ playerId });
@@ -66,7 +66,7 @@ class Protocol {
     playerId: number,
     uid: string,
     buildingType: number,
-    axialCoords: string,
+    axialCoords: string
   ) {
     this.send(
       aconcat(
@@ -75,20 +75,20 @@ class Protocol {
           playerId,
           uid,
           buildingType,
-          axialCoords,
-        }),
-      ),
+          axialCoords
+        })
+      )
     );
   }
   public Customize(Customization: { race: number; map: number }) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.CUSTOMIZE]),
-        Protobuf.encoder.encodeCustomize(Customization),
-      ),
+        Protobuf.encoder.encodeCustomize(Customization)
+      )
     );
   }
-  public EntityMove(
+  public MoveEntity(
     uid: string,
     x: number,
     y: number,
@@ -97,12 +97,12 @@ class Protocol {
     pitch: number,
     vx: number,
     vy: number,
-    vz: number,
+    vz: number
   ) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.ENTITY_MOVE]),
-        Protobuf.encoder.encodeEntityMove({
+        Protobuf.encoder.encodeMoveEntity({
           uid,
           x,
           y,
@@ -111,25 +111,17 @@ class Protocol {
           pitch,
           vx,
           vy,
-          vz,
-        }),
-      ),
+          vz
+        })
+      )
     );
   }
   public Message(content: string) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.MESSAGE]),
-        Protobuf.encoder.encodeMessage({ content }),
-      ),
-    );
-  }
-  public MoveUnit(uid: string, targetX: number, targetY: number) {
-    this.send(
-      aconcat(
-        new Uint8Array([PackageType.MOVE_UNIT]),
-        Protobuf.encoder.encodeMoveUnit({ uid, targetX, targetY }),
-      ),
+        Protobuf.encoder.encodeMessage({ content })
+      )
     );
   }
   public StartGame() {
@@ -139,80 +131,80 @@ class Protocol {
     this.send(
       aconcat(
         new Uint8Array([PackageType.SET_ANIMATION]),
-        Protobuf.encoder.encodeSetAnimation({ uid, animType }),
-      ),
+        Protobuf.encoder.encodeSetAnimation({ uid, animType })
+      )
     );
   }
   public TryAttack(sourceUid: string, targetUid: string) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_ATTACK]),
-        Protobuf.encoder.encodeTryAttack({ sourceUid, targetUid }),
-      ),
+        Protobuf.encoder.encodeTryAttack({ sourceUid, targetUid })
+      )
     );
   }
   public TryBuild(axialCoords: string, buildingType: number) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_BUILD]),
-        Protobuf.encoder.encodeTryBuild({ axialCoords, buildingType }),
-      ),
+        Protobuf.encoder.encodeTryBuild({ axialCoords, buildingType })
+      )
     );
   }
   public TryCustomize(Customization: { race: number; map: number }) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_CUSTOMIZE]),
-        Protobuf.encoder.encodeTryCustomize(Customization),
-      ),
+        Protobuf.encoder.encodeTryCustomize(Customization)
+      )
     );
   }
   public TryDefend(sourceUid: string, targetX: number, targetY: number) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_DEFEND]),
-        Protobuf.encoder.encodeTryDefend(sourceUid, targetX, targetY),
-      ),
+        Protobuf.encoder.encodeTryDefend(sourceUid, targetX, targetY)
+      )
     );
   }
   public TryJoinLobby(username: string) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_JOIN_LOBBY]),
-        Protobuf.encoder.encodeTryJoinLobby({ username }),
-      ),
+        Protobuf.encoder.encodeTryJoinLobby({ username })
+      )
     );
   }
   public TrySetPolicy(policyId: number) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_SET_POLICY]),
-        Protobuf.encoder.encodeTrySetPolicy({ policyId }),
-      ),
+        Protobuf.encoder.encodeTrySetPolicy({ policyId })
+      )
     );
   }
   public TryStartGame() {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_START_GAME]),
-        Protobuf.encoder.encodeTryStartGame(),
-      ),
+        Protobuf.encoder.encodeTryStartGame()
+      )
     );
   }
   public UpdateHealth(uid: string, hp: number) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.UPDATE_HEALTH]),
-        Protobuf.encoder.encodeUpdateHealth({ uid, hp }),
-      ),
+        Protobuf.encoder.encodeUpdateHealth({ uid, hp })
+      )
     );
   }
   public UpdateLobby(playerId: number, username: string) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.UPDATE_LOBBY]),
-        Protobuf.encoder.encodeUpdateLobby({ playerId, username }),
-      ),
+        Protobuf.encoder.encodeUpdateLobby({ playerId, username })
+      )
     );
   }
 }
