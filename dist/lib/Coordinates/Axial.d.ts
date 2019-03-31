@@ -17,3 +17,4 @@ export default class Axial implements CoordinatesInterface<Axial> {
     scale(n: number): Axial;
     tileDistance(t: Axial): number;
 }
+export { Axial };

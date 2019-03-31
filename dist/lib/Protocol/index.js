@@ -66,8 +66,8 @@ var Protocol = /** @class */ (function () {
     Protocol.prototype.Customize = function (Customization) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.CUSTOMIZE]), Protobuf.encoder.encodeCustomize(Customization)));
     };
-    Protocol.prototype.EntityMove = function (uid, x, y, z, yaw, pitch, vx, vy, vz) {
-        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.ENTITY_MOVE]), Protobuf.encoder.encodeEntityMove({
+    Protocol.prototype.MoveEntity = function (uid, x, y, z, yaw, pitch, vx, vy, vz) {
+        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.MOVE_ENTITY]), Protobuf.encoder.encodeMoveEntity({
             uid: uid,
             x: x,
             y: y,
@@ -81,9 +81,6 @@ var Protocol = /** @class */ (function () {
     };
     Protocol.prototype.Message = function (content) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.MESSAGE]), Protobuf.encoder.encodeMessage({ content: content })));
-    };
-    Protocol.prototype.MoveUnit = function (uid, targetX, targetY) {
-        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.MOVE_UNIT]), Protobuf.encoder.encodeMoveUnit({ uid: uid, targetX: targetX, targetY: targetY })));
     };
     Protocol.prototype.StartGame = function () {
         this.send(PackageType_1.PackageType.START_GAME + Protobuf.encoder.encodeStartGame());

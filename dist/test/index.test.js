@@ -1,6 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var lib_1 = require("../lib/");
+var K = require("../dist/");
+console.log(K);
+var dist_1 = require("../dist");
+console.log(dist_1.Protocol);
+// import { Axial, Protocol, TileInfo } from '../dist/';
 test('export', function () {
-    var axial = new lib_1.Axial(0, 0);
+    // const axial = new Axial(0, 0);
+    // expect(axial).toBeTruthy();
+    // const protocol = new Protocol();
+    // expect(protocol).toBeTruthy();
 });

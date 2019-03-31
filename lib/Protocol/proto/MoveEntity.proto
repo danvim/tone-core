@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-message EntityMove {
+message MoveEntity {
   string uid = 1;
   int32 x = 2;
   int32 y = 3;

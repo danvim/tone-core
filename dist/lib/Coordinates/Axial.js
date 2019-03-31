@@ -39,8 +39,8 @@ var Axial = /** @class */ (function () {
         return new HexCube_1.default(this.q, -this.q - this.r, this.r);
     };
     Axial.prototype.toCartesian = function (size) {
-        var x = size * (Math.sqrt(3) * this.q + Math.sqrt(3) / 2 * this.r);
-        var y = size * (3 / 2 * this.r);
+        var x = size * (Math.sqrt(3) * this.q + (Math.sqrt(3) / 2) * this.r);
+        var y = size * ((3 / 2) * this.r);
         return new Cartesian_1.default(x, y);
     };
     Axial.prototype.add = function (axial) {
@@ -54,12 +54,20 @@ var Axial = /** @class */ (function () {
         return this;
     };
     Axial.prototype.tileDistance = function (t) {
-        return (Math.abs(this.q - t.q) + Math.abs(this.q + this.r - t.q - t.r) + Math.abs(this.r - t.r)) / 2;
+        return ((Math.abs(this.q - t.q) +
+            Math.abs(this.q + this.r - t.q - t.r) +
+            Math.abs(this.r - t.r)) /
+            2);
     };
     Axial.neighbors = [
-        new Axial(+1, 0), new Axial(+1, -1), new Axial(0, -1),
-        new Axial(-1, 0), new Axial(-1, +1), new Axial(0, +1),
+        new Axial(+1, 0),
+        new Axial(+1, -1),
+        new Axial(0, -1),
+        new Axial(-1, 0),
+        new Axial(-1, +1),
+        new Axial(0, +1),
     ];
     return Axial;
 }());
+exports.Axial = Axial;
 exports.default = Axial;
