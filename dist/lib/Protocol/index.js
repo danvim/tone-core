@@ -16,17 +16,9 @@ var Protocol = /** @class */ (function () {
     Protocol.prototype.add = function (conn) {
         var _this = this;
         conn.on('data', function (data) {
-            // console.log("ondata", data);
             var event = new Uint8Array(data.slice(0, 1))[0];
-            // console.log("recieved", type, this.listeners[type]);
             if (typeof _this.listeners[event] === 'function') {
                 var buf = new Uint8Array(data.slice(1));
-                // console.log("called", PackageType[type], buf);
-                // console.log(
-                //   event,
-                //   PackageType[event],
-                //   "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
-                // );
                 var decoded = Protobuf.decoder['decode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
                 _this.listeners[event](decoded, conn);
             }
@@ -34,25 +26,26 @@ var Protocol = /** @class */ (function () {
         this.conns.push(conn);
     };
     Protocol.prototype.on = function (event, callback) {
-        // console.log("on", event);
         this.listeners[event] = callback;
     };
     Protocol.prototype.emit = function (event, object) {
-        // console.log(
-        //   event,
-        //   PackageType[event],
-        //   "encode" + UPPER_SNAKE2UpperCamel(PackageType[event])
-        // );
-        var buf = Protobuf.encoder['encode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](object);
-        this.send(aconcat(new Uint8Array([event]), buf));
+        this.send(this.encode(event, object));
     };
     Protocol.prototype.send = function (buff) {
-        // console.log("send", buff);
         this.conns.forEach(function (conn) { return conn.send(buff); });
+    };
+    Protocol.prototype.decode = function (data) {
+        var event = new Uint8Array(data.slice(0, 1))[0];
+        var buf = new Uint8Array(data.slice(1));
+        var decoded = Protobuf.decoder['decode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
+        return decoded;
+    };
+    Protocol.prototype.encode = function (event, object) {
+        var buf = Protobuf.encoder['encode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](object);
+        return aconcat(new Uint8Array([event]), buf);
     };
     Protocol.prototype.AssignId = function (playerId) {
         var buf = Protobuf.encoder.encodeAssignId({ playerId: playerId });
-        // console.log(buf);
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.ASSIGN_ID]), buf));
     };
     Protocol.prototype.Build = function (playerId, uid, buildingType, axialCoords) {

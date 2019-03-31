@@ -19,17 +19,9 @@ class Protocol {
   }
   public add(conn: Conn) {
     conn.on('data', (data: Uint8Array) => {
-      // console.log("ondata", data);
       const event = new Uint8Array(data.slice(0, 1))[0];
-      // console.log("recieved", type, this.listeners[type]);
       if (typeof this.listeners[event] === 'function') {
         const buf = new Uint8Array(data.slice(1));
-        // console.log("called", PackageType[type], buf);
-        // console.log(
-        //   event,
-        //   PackageType[event],
-        //   "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
-        // );
         const decoded = Protobuf.decoder[
           'decode' + UPPER_SNAKE2UpperCamel(PackageType[event])
         ](buf);
@@ -39,27 +31,30 @@ class Protocol {
     this.conns.push(conn);
   }
   public on(event: PackageType, callback: ProtocolCallback) {
-    // console.log("on", event);
     this.listeners[event] = callback;
   }
   public emit(event: PackageType, object: object) {
-    // console.log(
-    //   event,
-    //   PackageType[event],
-    //   "encode" + UPPER_SNAKE2UpperCamel(PackageType[event])
-    // );
+    this.send(this.encode(event, object));
+  }
+  public send(buff: Uint8Array) {
+    this.conns.forEach((conn) => conn.send(buff));
+  }
+  public decode(data: Uint8Array) {
+    const event = new Uint8Array(data.slice(0, 1))[0];
+    const buf = new Uint8Array(data.slice(1));
+    const decoded = Protobuf.decoder[
+      'decode' + UPPER_SNAKE2UpperCamel(PackageType[event])
+    ](buf);
+    return decoded;
+  }
+  public encode(event: PackageType, object: object) {
     const buf = Protobuf.encoder[
       'encode' + UPPER_SNAKE2UpperCamel(PackageType[event])
     ](object);
-    this.send(aconcat(new Uint8Array([event]), buf));
-  }
-  public send(buff: Uint8Array) {
-    // console.log("send", buff);
-    this.conns.forEach((conn) => conn.send(buff));
+    return aconcat(new Uint8Array([event]), buf);
   }
   public AssignId(playerId: number) {
     const buf = Protobuf.encoder.encodeAssignId({ playerId });
-    // console.log(buf);
     this.send(aconcat(new Uint8Array([PackageType.ASSIGN_ID]), buf));
   }
   public Build(
