@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var PackageType_1 = require("./PackageType");
+exports.PackageType = PackageType_1.PackageType;
 var aconcat = require("arraybuffer-concat");
 // import Peer from Peer.
 var Protobuf = require("./Protobuf").default;
@@ -25,7 +26,7 @@ var Protocol = /** @class */ (function () {
                 //   "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
                 // );
                 var decoded = Protobuf.decoder["decode" + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
-                _this.listeners[event](decoded);
+                _this.listeners[event](decoded, conn);
             }
         });
         this.conns.push(conn);
@@ -52,13 +53,12 @@ var Protocol = /** @class */ (function () {
         // console.log(buf);
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.ASSIGN_ID]), buf));
     };
-    Protocol.prototype.Build = function (playerId, uid, buildingType, targetX, targetY) {
+    Protocol.prototype.Build = function (playerId, uid, buildingType, axialCoords) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.BUILD]), Protobuf.encoder.encodeBuild({
             playerId: playerId,
             uid: uid,
             buildingType: buildingType,
-            targetX: targetX,
-            targetY: targetY
+            axialCoords: axialCoords
         })));
     };
     Protocol.prototype.Customize = function (Customization) {
@@ -92,8 +92,8 @@ var Protocol = /** @class */ (function () {
     Protocol.prototype.TryAttack = function (sourceUid, targetUid) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_ATTACK]), Protobuf.encoder.encodeTryAttack({ sourceUid: sourceUid, targetUid: targetUid })));
     };
-    Protocol.prototype.TryBuild = function (x, y, buildingType) {
-        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_BUILD]), Protobuf.encoder.encodeTryBuild({ x: x, y: y, buildingType: buildingType })));
+    Protocol.prototype.TryBuild = function (axialCoords, buildingType) {
+        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_BUILD]), Protobuf.encoder.encodeTryBuild({ axialCoords: axialCoords, buildingType: buildingType })));
     };
     Protocol.prototype.TryCustomize = function (Customization) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_CUSTOMIZE]), Protobuf.encoder.encodeTryCustomize(Customization)));
@@ -116,6 +116,7 @@ var Protocol = /** @class */ (function () {
     Protocol.prototype.UpdateLobby = function (playerId, username) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.UPDATE_LOBBY]), Protobuf.encoder.encodeUpdateLobby({ playerId: playerId, username: username })));
     };
+    Protocol.PackageType = PackageType_1.PackageType;
     return Protocol;
 }());
 exports.Protocol = Protocol;

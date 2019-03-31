@@ -1,4 +1,3 @@
-import { TileSize } from "./Tile";
 export declare enum BuildingType {
     BASE = 0,
     SPAWN_POINT = 1,
@@ -8,40 +7,16 @@ export declare enum BuildingType {
     TRAINING_DATA_GENERATOR = 5,
     PRIME_DATA_GENERATOR = 6,
     SHIELD_GENERATOR = 7,
-    INFORMATION_CLUSTOR = 8,
-    ATTACK_PLANT = 9,
-    GROWING_PLANT = 10,
-    GROWING_MOTHER = 11,
-    REPAIRE_PLANT = 12
+    ATTACK_PLANT = 8,
+    GROWING_PLANT = 9,
+    GROWING_MOTHER = 10,
+    REPAIR_PLANT = 11
 }
-declare const _default: {
-    0: {
-        size: TileSize;
-    };
-    1: {};
-    2: {
-        size: TileSize;
-        struct: number;
-    };
-    3: {
-        size: TileSize;
-        struct: number;
-    };
-    4: {
-        size: TileSize;
-        struct: number;
-    };
-    5: {
-        size: TileSize;
-        struct: number;
-    };
-    6: {
-        size: TileSize;
-        struct: number;
-    };
-    7: {
-        size: TileSize;
-        struct: number;
-    };
+interface BuildingPropertyInterface {
+    size: number;
+    struct: number;
+}
+export declare const BuildingProperty: {
+    [k in BuildingType]: BuildingPropertyInterface;
 };
-export default _default;
+export {};
