@@ -1,3 +1,7 @@
+export declare const TILE_SIZE: number;
+export declare const TILE_WIDTH: number;
+export declare const TILE_HEIGHT: number;
+export declare const LEVEL_HEIGHT: number;
 export declare enum TileType {
     VOID = 0,
     EMPTY = 1,
