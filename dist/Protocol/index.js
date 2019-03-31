@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var PackageType_1 = require("./PackageType");
 exports.PackageType = PackageType_1.PackageType;
-var aconcat = require("arraybuffer-concat");
+// tslint:disable-next-line:no-var-requires
+var aconcat = require('arraybuffer-concat');
 // import Peer from Peer.
-var Protobuf = require("./Protobuf").default;
+// tslint:disable-next-line:no-var-requires
+var Protobuf = require('./Protobuf').default;
 var helper_1 = require("../helper");
 var Protocol = /** @class */ (function () {
     function Protocol() {
@@ -13,11 +15,11 @@ var Protocol = /** @class */ (function () {
     }
     Protocol.prototype.add = function (conn) {
         var _this = this;
-        conn.on("data", function (data) {
+        conn.on('data', function (data) {
             // console.log("ondata", data);
             var event = new Uint8Array(data.slice(0, 1))[0];
             // console.log("recieved", type, this.listeners[type]);
-            if (typeof _this.listeners[event] == typeof (function () { })) {
+            if (typeof _this.listeners[event] === 'function') {
                 var buf = new Uint8Array(data.slice(1));
                 // console.log("called", PackageType[type], buf);
                 // console.log(
@@ -25,7 +27,7 @@ var Protocol = /** @class */ (function () {
                 //   PackageType[event],
                 //   "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
                 // );
-                var decoded = Protobuf.decoder["decode" + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
+                var decoded = Protobuf.decoder['decode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
                 _this.listeners[event](decoded, conn);
             }
         });
@@ -41,7 +43,7 @@ var Protocol = /** @class */ (function () {
         //   PackageType[event],
         //   "encode" + UPPER_SNAKE2UpperCamel(PackageType[event])
         // );
-        var buf = Protobuf.encoder["encode" + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](object);
+        var buf = Protobuf.encoder['encode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](object);
         this.send(aconcat(new Uint8Array([event]), buf));
     };
     Protocol.prototype.send = function (buff) {
@@ -58,7 +60,7 @@ var Protocol = /** @class */ (function () {
             playerId: playerId,
             uid: uid,
             buildingType: buildingType,
-            axialCoords: axialCoords
+            axialCoords: axialCoords,
         })));
     };
     Protocol.prototype.Customize = function (Customization) {
@@ -74,7 +76,7 @@ var Protocol = /** @class */ (function () {
             pitch: pitch,
             vx: vx,
             vy: vy,
-            vz: vz
+            vz: vz,
         })));
     };
     Protocol.prototype.Message = function (content) {

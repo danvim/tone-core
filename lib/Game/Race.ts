@@ -1,4 +1,4 @@
 export enum Race {
-  HUMAN,
-  NPC
+  LAST_DEFENSE,
+  HIVE_MIND,
 }

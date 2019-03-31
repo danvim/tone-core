@@ -14,11 +14,25 @@ var Axial = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Axial.prototype, "asArray", {
+        get: function () {
+            return [this.q, this.r];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Axial.prototype, "asString", {
+        get: function () {
+            return this.asArray.join(',');
+        },
+        enumerable: true,
+        configurable: true
+    });
     Axial.fromArray = function (a) {
         return new (Axial.bind.apply(Axial, [void 0].concat(a)))();
     };
     Axial.fromString = function (s) {
-        var a = s.split(",").map(function (i) { return parseInt(i); });
+        var a = s.split(',').map(function (i) { return parseInt(i); });
         return Axial.fromArray([a[0], a[1]]);
     };
     Axial.prototype.toHexCube = function () {
@@ -29,21 +43,6 @@ var Axial = /** @class */ (function () {
         var y = size * (3 / 2 * this.r);
         return new Cartesian_1.default(x, y);
     };
-    Object.defineProperty(Axial.prototype, "asArray", {
-        get: function () {
-            return [this.q, this.r];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(Axial.prototype, "asString", {
-        get: function () {
-            return this.asArray.join(",");
-        },
-        enumerable: true,
-        configurable: true
-    });
     Axial.prototype.add = function (axial) {
         this.q += axial.q;
         this.r += axial.r;

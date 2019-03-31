@@ -1,6 +1,6 @@
-import { Race } from "./Race";
+import { Race } from './Race';
 
-export type Customization = {
+export interface Customization {
   players: {
     [rtcId in string]: {
       displayName: string;
@@ -9,4 +9,4 @@ export type Customization = {
     }
   };
   mapOptions: {};
-};
+}

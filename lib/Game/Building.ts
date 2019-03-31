@@ -1,4 +1,4 @@
-import { TileSize } from "./Tile";
+import { TileSize } from './Tile';
 
 export enum BuildingType {
   BASE,
@@ -12,7 +12,7 @@ export enum BuildingType {
   ATTACK_PLANT,
   GROWING_PLANT,
   GROWING_MOTHER,
-  REPAIR_PLANT
+  REPAIR_PLANT,
 }
 
 interface BuildingPropertyInterface {
@@ -25,50 +25,50 @@ export const BuildingProperty: {
 } = {
   [BuildingType.BASE]: {
     size: TileSize.SMALL,
-    struct: 0
+    struct: 0,
   },
   [BuildingType.SPAWN_POINT]: {
     size: TileSize.SMALL,
-    struct: 0
+    struct: 0,
   },
   [BuildingType.STRUCT_GENERATOR]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.RECLAIMATOR]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.BARRACK]: {
     size: TileSize.LARGE,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.TRAINING_DATA_GENERATOR]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.PRIME_DATA_GENERATOR]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.SHIELD_GENERATOR]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.ATTACK_PLANT]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.GROWING_PLANT]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.GROWING_MOTHER]: {
     size: TileSize.SMALL,
-    struct: 5
+    struct: 5,
   },
   [BuildingType.REPAIR_PLANT]: {
     size: TileSize.SMALL,
-    struct: 5
-  }
+    struct: 5,
+  },
 };

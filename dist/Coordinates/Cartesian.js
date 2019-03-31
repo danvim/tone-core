@@ -12,13 +12,6 @@ var Cartesian = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Cartesian.fromArray = function (a) {
-        return new (Cartesian.bind.apply(Cartesian, [void 0].concat(a)))();
-    };
-    Cartesian.fromString = function (s) {
-        var a = s.split(",").map(function (i) { return parseInt(i); });
-        return Cartesian.fromArray([a[0], a[1]]);
-    };
     Object.defineProperty(Cartesian.prototype, "asArray", {
         get: function () {
             return [this.x, this.y];
@@ -28,11 +21,18 @@ var Cartesian = /** @class */ (function () {
     });
     Object.defineProperty(Cartesian.prototype, "asString", {
         get: function () {
-            return this.asArray.join(",");
+            return this.asArray.join(',');
         },
         enumerable: true,
         configurable: true
     });
+    Cartesian.fromArray = function (a) {
+        return new (Cartesian.bind.apply(Cartesian, [void 0].concat(a)))();
+    };
+    Cartesian.fromString = function (s) {
+        var a = s.split(',').map(function (i) { return parseInt(i); });
+        return Cartesian.fromArray([a[0], a[1]]);
+    };
     Cartesian.prototype.add = function (coords) {
         this.x += coords.x;
         this.y += coords.y;
@@ -52,7 +52,7 @@ var Cartesian = /** @class */ (function () {
     Cartesian.neighbors = [
         new Cartesian(-1, -1), new Cartesian(0, -1), new Cartesian(1, -1),
         new Cartesian(-1, 0), new Cartesian(1, 0),
-        new Cartesian(-1, 1), new Cartesian(0, 1), new Cartesian(1, 1)
+        new Cartesian(-1, 1), new Cartesian(0, 1), new Cartesian(1, 1),
     ];
     return Cartesian;
 }());
