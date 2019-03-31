@@ -1,5 +1,4 @@
 export enum PackageType {
-  ASSIGN_ID,
   ATTACK,
   BUILD,
   CUSTOMIZE,

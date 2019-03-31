@@ -1,71 +1,70 @@
-global.Blob = require("blob-polyfill").Blob;
-var express = require("express");
+global.Blob = require('blob-polyfill').Blob;
+var express = require('express');
 var app = express();
-var http = require("http").Server(app);
+var http = require('http').Server(app);
 // var ioServer = require("socket.io")(http);
-const peerjs = require("peerjs-nodejs");
+const peerjs = require('peerjs-nodejs');
 
-const { ExpressPeerServer } = require("peer");
+const { ExpressPeerServer } = require('peer');
 
-const Protocol = require("../dist/Protocol/").default;
-const ProtoBuf = require("../dist/Protocol/Protobuf").default;
-const PackageType = require("../dist/Protocol/PackageType").PackageType;
+const Protocol = require('../dist/Protocol/').default;
+const ProtoBuf = require('../dist/Protocol/Protobuf').default;
+const PackageType = require('../dist/Protocol/PackageType').PackageType;
 
-const Game = require("../dist/Game").default;
+const Game = require('../dist/Game').default;
 console.log(Game);
-const ToneCore = require("../dist");
+const ToneCore = require('../dist');
 console.log(ToneCore, ToneCore.Protocol, ToneCore.Axial);
 // @ts-ignore
 global.postMessage = (...arg) => console.log(arg);
 
 const PORT = 3300;
 
-app.use("/peer", ExpressPeerServer(http, { debug: false }));
+app.use('/peer', ExpressPeerServer(http, { debug: false }));
 
 http.listen(PORT, () => {
-  console.log("listening on localhost:" + PORT);
+  console.log('listening on localhost:' + PORT);
 });
 
-let peer = peerjs("server", {
-  host: "localhost",
+let peer = peerjs('server', {
+  host: 'localhost',
   port: PORT,
-  path: "/peer"
+  path: '/peer',
 });
-peer.serialization = "none";
+peer.serialization = 'none';
 
 const serverProcotocol = new Protocol();
 const clientProcotocol = new Protocol();
 
-peer.on("connection", conn => {
-  console.log("connected", conn.label);
-  conn.serialization = "none";
+peer.on('connection', conn => {
+  console.log('connected', conn.label);
+  conn.serialization = 'none';
   serverProcotocol.add(conn);
   serverProcotocol.on(PackageType.ASSIGN_ID, buf => {
-    console.log("beyyyy", buf);
+    console.log('beyyyy', buf);
   });
   serverProcotocol.on(PackageType.MESSAGE, buf => {
-    console.log("message", buf);
+    console.log('message', buf);
   });
   // conn.on("data", data => {
   //   console.log("conn1", data);
   //   conn.send(data);
   // });
-  conn.send("hello world");
+  conn.send('hello world');
 });
 
-peer.on("open", () => {
-  let peer2 = peerjs({ host: "localhost", port: PORT, path: "/peer" });
-  peer2.serialization = "none";
-  let conn2 = peer2.connect("server");
-  conn2.serialization = "none";
-  conn2.on("data", data => {
-    console.log("conn2", data);
+peer.on('open', () => {
+  let peer2 = peerjs({ host: 'localhost', port: PORT, path: '/peer' });
+  peer2.serialization = 'none';
+  let conn2 = peer2.connect('server');
+  conn2.serialization = 'none';
+  conn2.on('data', data => {
+    console.log('conn2', data);
   });
-  conn2.on("open", () => {
-    console.log("send");
+  conn2.on('open', () => {
+    console.log('send');
     clientProcotocol.add(conn2);
-    clientProcotocol.AssignId(2);
-    clientProcotocol.Message("hello");
-    clientProcotocol.emit(PackageType.MESSAGE, { content: "world" });
+    clientProcotocol.Message('hello');
+    clientProcotocol.emit(PackageType.MESSAGE, { content: 'world' });
   });
 });

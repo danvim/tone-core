@@ -15,7 +15,6 @@ declare class Protocol {
     emit(event: PackageType, object: object): void;
     send(buff: Uint8Array): void;
     decode(data: Uint8Array): any;
-    AssignId(playerId: number): void;
     Build(playerId: number, uid: string, buildingType: number, axialCoords: string): void;
     Customize(Customization: {
         race: number;

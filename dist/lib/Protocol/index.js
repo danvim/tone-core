@@ -44,10 +44,6 @@ var Protocol = /** @class */ (function () {
         var decoded = Protobuf.decoder['decode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
         return decoded;
     };
-    Protocol.prototype.AssignId = function (playerId) {
-        var buf = Protobuf.encoder.encodeAssignId({ playerId: playerId });
-        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.ASSIGN_ID]), buf));
-    };
     Protocol.prototype.Build = function (playerId, uid, buildingType, axialCoords) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.BUILD]), Protobuf.encoder.encodeBuild({
             playerId: playerId,

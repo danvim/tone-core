@@ -53,10 +53,6 @@ class Protocol {
     ](buf);
     return decoded;
   }
-  public AssignId(playerId: number) {
-    const buf = Protobuf.encoder.encodeAssignId({ playerId });
-    this.send(aconcat(new Uint8Array([PackageType.ASSIGN_ID]), buf));
-  }
   public Build(
     playerId: number,
     uid: string,
