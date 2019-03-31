@@ -4,6 +4,7 @@ import Conn = PeerJs.DataConnection;
 declare type ProtocolCallback = (data: any, conn: Conn) => any;
 declare class Protocol {
     static PackageType: typeof PackageType;
+    static encode(event: PackageType, object: object): any;
     conns: Conn[];
     listeners: {
         [type: number]: ProtocolCallback;
@@ -14,7 +15,6 @@ declare class Protocol {
     emit(event: PackageType, object: object): void;
     send(buff: Uint8Array): void;
     decode(data: Uint8Array): any;
-    encode(event: PackageType, object: object): any;
     AssignId(playerId: number): void;
     Build(playerId: number, uid: string, buildingType: number, axialCoords: string): void;
     Customize(Customization: {

@@ -11,6 +11,12 @@ type ProtocolCallback = (data: any, conn: Conn) => any;
 
 class Protocol {
   public static PackageType = PackageType;
+  public static encode(event: PackageType, object: object) {
+    const buf = Protobuf.encoder[
+      'encode' + UPPER_SNAKE2UpperCamel(PackageType[event])
+    ](object);
+    return aconcat(new Uint8Array([event]), buf);
+  }
   public conns: Conn[];
   public listeners: { [type: number]: ProtocolCallback };
   constructor() {
@@ -34,7 +40,7 @@ class Protocol {
     this.listeners[event] = callback;
   }
   public emit(event: PackageType, object: object) {
-    this.send(this.encode(event, object));
+    this.send(Protocol.encode(event, object));
   }
   public send(buff: Uint8Array) {
     this.conns.forEach((conn) => conn.send(buff));
@@ -46,12 +52,6 @@ class Protocol {
       'decode' + UPPER_SNAKE2UpperCamel(PackageType[event])
     ](buf);
     return decoded;
-  }
-  public encode(event: PackageType, object: object) {
-    const buf = Protobuf.encoder[
-      'encode' + UPPER_SNAKE2UpperCamel(PackageType[event])
-    ](object);
-    return aconcat(new Uint8Array([event]), buf);
   }
   public AssignId(playerId: number) {
     const buf = Protobuf.encoder.encodeAssignId({ playerId });

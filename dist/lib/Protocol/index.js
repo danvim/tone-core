@@ -13,6 +13,10 @@ var Protocol = /** @class */ (function () {
         this.conns = [];
         this.listeners = [];
     }
+    Protocol.encode = function (event, object) {
+        var buf = Protobuf.encoder['encode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](object);
+        return aconcat(new Uint8Array([event]), buf);
+    };
     Protocol.prototype.add = function (conn) {
         var _this = this;
         conn.on('data', function (data) {
@@ -29,7 +33,7 @@ var Protocol = /** @class */ (function () {
         this.listeners[event] = callback;
     };
     Protocol.prototype.emit = function (event, object) {
-        this.send(this.encode(event, object));
+        this.send(Protocol.encode(event, object));
     };
     Protocol.prototype.send = function (buff) {
         this.conns.forEach(function (conn) { return conn.send(buff); });
@@ -39,10 +43,6 @@ var Protocol = /** @class */ (function () {
         var buf = new Uint8Array(data.slice(1));
         var decoded = Protobuf.decoder['decode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
         return decoded;
-    };
-    Protocol.prototype.encode = function (event, object) {
-        var buf = Protobuf.encoder['encode' + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](object);
-        return aconcat(new Uint8Array([event]), buf);
     };
     Protocol.prototype.AssignId = function (playerId) {
         var buf = Protobuf.encoder.encodeAssignId({ playerId: playerId });
