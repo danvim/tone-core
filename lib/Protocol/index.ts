@@ -1,8 +1,9 @@
-import { PackageTypes } from "./PackageTypes";
+import { PackageType } from "./PackageType";
 import Conn = PeerJs.DataConnection;
 var aconcat = require("arraybuffer-concat");
 // import Peer from Peer.
 const Protobuf = require("./Protobuf").default;
+import { UPPER_SNAKE2UpperCamel } from "../helper";
 
 type ProtocolCallback = (data: object) => any;
 
@@ -20,8 +21,15 @@ export class Protocol {
       // console.log("recieved", type, this.listeners[type]);
       if (typeof this.listeners[event] == typeof (() => {})) {
         const buf = new Uint8Array(data.slice(1));
-        // console.log("called", PackageTypes[type], buf);
-        const decoded = Protobuf.decoder["decode" + PackageTypes[event]](buf);
+        // console.log("called", PackageType[type], buf);
+        // console.log(
+        //   event,
+        //   PackageType[event],
+        //   "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
+        // );
+        const decoded = Protobuf.decoder[
+          "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
+        ](buf);
         this.listeners[event](decoded);
       }
     });
@@ -31,8 +39,15 @@ export class Protocol {
     // console.log("on", event);
     this.listeners[event] = callback;
   }
-  emit(event: PackageTypes, object: Object) {
-    const buf = Protobuf.encoder["encode" + PackageTypes[event]](object);
+  emit(event: PackageType, object: Object) {
+    // console.log(
+    //   event,
+    //   PackageType[event],
+    //   "encode" + UPPER_SNAKE2UpperCamel(PackageType[event])
+    // );
+    const buf = Protobuf.encoder[
+      "encode" + UPPER_SNAKE2UpperCamel(PackageType[event])
+    ](object);
     this.send(aconcat(new Uint8Array([event]), buf));
   }
   send(buff: Uint8Array) {
@@ -42,7 +57,7 @@ export class Protocol {
   AssignId(playerId: number) {
     const buf = Protobuf.encoder.encodeAssignId({ playerId });
     // console.log(buf);
-    this.send(aconcat(new Uint8Array([PackageTypes.AssignId]), buf));
+    this.send(aconcat(new Uint8Array([PackageType.ASSIGN_ID]), buf));
   }
   Build(
     playerId: number,
@@ -53,7 +68,7 @@ export class Protocol {
   ) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.Build]),
+        new Uint8Array([PackageType.BUILD]),
         Protobuf.encoder.encodeBuild({
           playerId,
           uid,
@@ -67,7 +82,7 @@ export class Protocol {
   Customize(Customization: { race: number; map: number }) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.Customize]),
+        new Uint8Array([PackageType.CUSTOMIZE]),
         Protobuf.encoder.encodeCustomize(Customization)
       )
     );
@@ -85,7 +100,7 @@ export class Protocol {
   ) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.EntityMove]),
+        new Uint8Array([PackageType.ENTITY_MOVE]),
         Protobuf.encoder.encodeEntityMove({
           uid,
           x,
@@ -103,7 +118,7 @@ export class Protocol {
   Message(content: string) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.Message]),
+        new Uint8Array([PackageType.MESSAGE]),
         Protobuf.encoder.encodeMessage({ content })
       )
     );
@@ -111,18 +126,18 @@ export class Protocol {
   MoveUnit(uid: string, targetX: number, targetY: number) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.MoveUnit]),
+        new Uint8Array([PackageType.MOVE_UNIT]),
         Protobuf.encoder.encodeMoveUnit({ uid, targetX, targetY })
       )
     );
   }
   StartGame() {
-    this.send(PackageTypes.StartGame + Protobuf.encoder.encodeStartGame());
+    this.send(PackageType.START_GAME + Protobuf.encoder.encodeStartGame());
   }
   SetAnimation(uid: string, animType: number) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.SetAnimation]),
+        new Uint8Array([PackageType.SET_ANIMATION]),
         Protobuf.encoder.encodeSetAnimation({ uid, animType })
       )
     );
@@ -130,7 +145,7 @@ export class Protocol {
   TryAttack(sourceUid: string, targetUid: string) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.TryAttack]),
+        new Uint8Array([PackageType.TRY_ATTACK]),
         Protobuf.encoder.encodeTryAttack({ sourceUid, targetUid })
       )
     );
@@ -138,7 +153,7 @@ export class Protocol {
   TryBuild(x: number, y: number, buildingType: number) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.TryBuild]),
+        new Uint8Array([PackageType.TRY_BUILD]),
         Protobuf.encoder.encodeTryBuild({ x, y, buildingType })
       )
     );
@@ -146,7 +161,7 @@ export class Protocol {
   TryCustomize(Customization: { race: number; map: number }) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.TryCustomize]),
+        new Uint8Array([PackageType.TRY_CUSTOMIZE]),
         Protobuf.encoder.encodeTryCustomize(Customization)
       )
     );
@@ -154,7 +169,7 @@ export class Protocol {
   TryDefend(sourceUid: string, targetX: number, targetY: number) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.TryDefend]),
+        new Uint8Array([PackageType.TRY_DEFEND]),
         Protobuf.encoder.encodeTryDefend(sourceUid, targetX, targetY)
       )
     );
@@ -162,7 +177,7 @@ export class Protocol {
   TryJoinLobby(username: string) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.TryJoinLobby]),
+        new Uint8Array([PackageType.TRY_JOIN_LOBBY]),
         Protobuf.encoder.encodeTryJoinLobby({ username })
       )
     );
@@ -170,7 +185,7 @@ export class Protocol {
   TrySetPolicy(policyId: number) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.TrySetPolicy]),
+        new Uint8Array([PackageType.TRY_SET_POLICY]),
         Protobuf.encoder.encodeTrySetPolicy({ policyId })
       )
     );
@@ -178,7 +193,7 @@ export class Protocol {
   TryStartGame() {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.TryStartGame]),
+        new Uint8Array([PackageType.TRY_START_GAME]),
         Protobuf.encoder.encodeTryStartGame()
       )
     );
@@ -186,7 +201,7 @@ export class Protocol {
   UpdateHealth(uid: string, hp: number) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.UpdateHealth]),
+        new Uint8Array([PackageType.UPDATE_HEALTH]),
         Protobuf.encoder.encodeUpdateHealth({ uid, hp })
       )
     );
@@ -194,7 +209,7 @@ export class Protocol {
   UpdateLobby(playerId: number, username: string) {
     this.send(
       aconcat(
-        new Uint8Array([PackageTypes.UpdateLobby]),
+        new Uint8Array([PackageType.UPDATE_LOBBY]),
         Protobuf.encoder.encodeUpdateLobby({ playerId, username })
       )
     );

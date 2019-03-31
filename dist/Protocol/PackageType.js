@@ -5,7 +5,7 @@ var PackageType;
     PackageType[PackageType["ASSIGN_ID"] = 0] = "ASSIGN_ID";
     PackageType[PackageType["BUILD"] = 1] = "BUILD";
     PackageType[PackageType["CUSTOMIZE"] = 2] = "CUSTOMIZE";
-    PackageType[PackageType["ENTITYMOVE"] = 3] = "ENTITYMOVE";
+    PackageType[PackageType["ENTITY_MOVE"] = 3] = "ENTITY_MOVE";
     PackageType[PackageType["MESSAGE"] = 4] = "MESSAGE";
     PackageType[PackageType["MOVE_UNIT"] = 5] = "MOVE_UNIT";
     PackageType[PackageType["START_GAME"] = 6] = "START_GAME";

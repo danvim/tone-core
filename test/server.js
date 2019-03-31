@@ -9,7 +9,7 @@ const { ExpressPeerServer } = require("peer");
 
 const Protocol = require("../dist/Protocol/").default;
 const ProtoBuf = require("../dist/Protocol/Protobuf").default;
-const PackageTypes = require("../dist/Protocol/PackageTypes").PackageTypes;
+const PackageType = require("../dist/Protocol/PackageType").PackageType;
 
 const Game = require("../dist/Game").default;
 console.log(Game);
@@ -38,10 +38,10 @@ peer.on("connection", conn => {
   console.log("connected", conn.label);
   conn.serialization = "none";
   serverProcotocol.add(conn);
-  serverProcotocol.on(PackageTypes.AssignId, buf => {
+  serverProcotocol.on(PackageType.ASSIGN_ID, buf => {
     console.log("beyyyy", buf);
   });
-  serverProcotocol.on(PackageTypes.Message, buf => {
+  serverProcotocol.on(PackageType.MESSAGE, buf => {
     console.log("message", buf);
   });
   // conn.on("data", data => {
@@ -64,6 +64,6 @@ peer.on("open", () => {
     clientProcotocol.add(conn2);
     clientProcotocol.AssignId(2);
     clientProcotocol.Message("hello");
-    clientProcotocol.emit(PackageTypes.Message, { content: "world" });
+    clientProcotocol.emit(PackageType.MESSAGE, { content: "world" });
   });
 });
