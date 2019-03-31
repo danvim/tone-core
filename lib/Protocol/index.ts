@@ -7,9 +7,10 @@ import { UPPER_SNAKE2UpperCamel } from "../helper";
 
 type ProtocolCallback = (data: object) => any;
 
-export class Protocol {
+class Protocol {
   conns: Array<Conn>;
   listeners: { [type: number]: ProtocolCallback };
+  static PackageType = PackageType;
   constructor() {
     this.conns = [];
     this.listeners = [];
@@ -217,3 +218,5 @@ export class Protocol {
 }
 
 export default Protocol;
+
+export { PackageType, Protocol };

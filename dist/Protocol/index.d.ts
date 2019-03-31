@@ -2,11 +2,12 @@
 import { PackageType } from "./PackageType";
 import Conn = PeerJs.DataConnection;
 declare type ProtocolCallback = (data: object) => any;
-export declare class Protocol {
+declare class Protocol {
     conns: Array<Conn>;
     listeners: {
         [type: number]: ProtocolCallback;
     };
+    static PackageType: typeof PackageType;
     constructor();
     add(conn: Conn): void;
     on(event: number, callback: ProtocolCallback): void;
@@ -37,3 +38,4 @@ export declare class Protocol {
     UpdateLobby(playerId: number, username: string): void;
 }
 export default Protocol;
+export { PackageType, Protocol };

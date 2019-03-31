@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var PackageType_1 = require("./PackageType");
+exports.PackageType = PackageType_1.PackageType;
 var aconcat = require("arraybuffer-concat");
 // import Peer from Peer.
 var Protobuf = require("./Protobuf").default;
@@ -116,6 +117,7 @@ var Protocol = /** @class */ (function () {
     Protocol.prototype.UpdateLobby = function (playerId, username) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.UPDATE_LOBBY]), Protobuf.encoder.encodeUpdateLobby({ playerId: playerId, username: username })));
     };
+    Protocol.PackageType = PackageType_1.PackageType;
     return Protocol;
 }());
 exports.Protocol = Protocol;

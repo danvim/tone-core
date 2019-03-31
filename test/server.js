@@ -13,6 +13,8 @@ const PackageType = require("../dist/Protocol/PackageType").PackageType;
 
 const Game = require("../dist/Game").default;
 console.log(Game);
+const ToneCore = require("../dist");
+console.log(ToneCore, ToneCore.Protocol, ToneCore.Axial);
 // @ts-ignore
 global.postMessage = (...arg) => console.log(arg);
 
