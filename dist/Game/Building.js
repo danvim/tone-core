@@ -12,17 +12,20 @@ var BuildingType;
     BuildingType[BuildingType["TRAINING_DATA_GENERATOR"] = 5] = "TRAINING_DATA_GENERATOR";
     BuildingType[BuildingType["PRIME_DATA_GENERATOR"] = 6] = "PRIME_DATA_GENERATOR";
     BuildingType[BuildingType["SHIELD_GENERATOR"] = 7] = "SHIELD_GENERATOR";
-    BuildingType[BuildingType["INFORMATION_CLUSTOR"] = 8] = "INFORMATION_CLUSTOR";
-    BuildingType[BuildingType["ATTACK_PLANT"] = 9] = "ATTACK_PLANT";
-    BuildingType[BuildingType["GROWING_PLANT"] = 10] = "GROWING_PLANT";
-    BuildingType[BuildingType["GROWING_MOTHER"] = 11] = "GROWING_MOTHER";
-    BuildingType[BuildingType["REPAIRE_PLANT"] = 12] = "REPAIRE_PLANT";
+    BuildingType[BuildingType["ATTACK_PLANT"] = 8] = "ATTACK_PLANT";
+    BuildingType[BuildingType["GROWING_PLANT"] = 9] = "GROWING_PLANT";
+    BuildingType[BuildingType["GROWING_MOTHER"] = 10] = "GROWING_MOTHER";
+    BuildingType[BuildingType["REPAIR_PLANT"] = 11] = "REPAIR_PLANT";
 })(BuildingType = exports.BuildingType || (exports.BuildingType = {}));
-exports.default = (_a = {},
+exports.BuildingProperty = (_a = {},
     _a[BuildingType.BASE] = {
-        size: Tile_1.TileSize.SMALL
+        size: Tile_1.TileSize.SMALL,
+        struct: 0
     },
-    _a[BuildingType.SPAWN_POINT] = {},
+    _a[BuildingType.SPAWN_POINT] = {
+        size: Tile_1.TileSize.SMALL,
+        struct: 0
+    },
     _a[BuildingType.STRUCT_GENERATOR] = {
         size: Tile_1.TileSize.SMALL,
         struct: 5
@@ -44,6 +47,22 @@ exports.default = (_a = {},
         struct: 5
     },
     _a[BuildingType.SHIELD_GENERATOR] = {
+        size: Tile_1.TileSize.SMALL,
+        struct: 5
+    },
+    _a[BuildingType.ATTACK_PLANT] = {
+        size: Tile_1.TileSize.SMALL,
+        struct: 5
+    },
+    _a[BuildingType.GROWING_PLANT] = {
+        size: Tile_1.TileSize.SMALL,
+        struct: 5
+    },
+    _a[BuildingType.GROWING_MOTHER] = {
+        size: Tile_1.TileSize.SMALL,
+        struct: 5
+    },
+    _a[BuildingType.REPAIR_PLANT] = {
         size: Tile_1.TileSize.SMALL,
         struct: 5
     },

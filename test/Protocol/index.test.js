@@ -40,6 +40,23 @@ test("protobuf", async done => {
   done();
 });
 
+test("protobuf-tiles", async done => {
+  await Protobuf.awaitInitDone();
+  const {
+    encoder: { encodeUpdateTiles },
+    decoder: { decodeUpdateTiles }
+  } = Protobuf;
+  const object = {
+    tiles: {
+      "1,2": { height: 12, type: 4 },
+      "100,99": { height: 5, type: 7 }
+    }
+  };
+  const data = encodeUpdateTiles(object);
+  expect(decodeUpdateTiles(data)).toEqual(object);
+  done();
+});
+
 test("Protocol", () => {
   const protocol = new Protocol();
   expect(1).toBe(1);

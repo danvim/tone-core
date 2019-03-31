@@ -6,4 +6,6 @@ message Build {
   int32 buildingType = 3;
   int32 targetX = 4;
   int32 targetY = 5;
+  uint32 variant = 6;
+  uint32 progress = 7;
 }
