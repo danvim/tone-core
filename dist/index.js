@@ -7,3 +7,5 @@ exports.Coordinates = Coordinates_1.default;
 var Game_1 = require("./Game");
 exports.Game = Game_1.default;
 exports.default = { Protocol: Protocol_1.default, Coordinates: Coordinates_1.default, Game: Game_1.default };
+exports.ToneCore = { Protocol: Protocol_1.default, Coordinates: Coordinates_1.default, Game: Game_1.default };
+module.exports = { Protocol: Protocol_1.default, Coordinates: Coordinates_1.default, Game: Game_1.default };
