@@ -1,6 +1,6 @@
 {
   "name": "tone-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Data structure for tone-server and tone",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
