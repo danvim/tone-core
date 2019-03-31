@@ -1,7 +1,7 @@
 /// <reference types="peerjs" />
 import { PackageType } from "./PackageType";
 import Conn = PeerJs.DataConnection;
-declare type ProtocolCallback = (data: object) => any;
+declare type ProtocolCallback = (data: object, conn: Conn) => any;
 declare class Protocol {
     conns: Array<Conn>;
     listeners: {

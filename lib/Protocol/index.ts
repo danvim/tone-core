@@ -5,7 +5,7 @@ var aconcat = require("arraybuffer-concat");
 const Protobuf = require("./Protobuf").default;
 import { UPPER_SNAKE2UpperCamel } from "../helper";
 
-type ProtocolCallback = (data: object) => any;
+type ProtocolCallback = (data: object, conn: Conn) => any;
 
 class Protocol {
   conns: Array<Conn>;
@@ -31,7 +31,7 @@ class Protocol {
         const decoded = Protobuf.decoder[
           "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
         ](buf);
-        this.listeners[event](decoded);
+        this.listeners[event](decoded, conn);
       }
     });
     this.conns.push(conn);

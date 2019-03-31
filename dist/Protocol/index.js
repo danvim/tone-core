@@ -26,7 +26,7 @@ var Protocol = /** @class */ (function () {
                 //   "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
                 // );
                 var decoded = Protobuf.decoder["decode" + helper_1.UPPER_SNAKE2UpperCamel(PackageType_1.PackageType[event])](buf);
-                _this.listeners[event](decoded);
+                _this.listeners[event](decoded, conn);
             }
         });
         this.conns.push(conn);
