@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-message TryDefend {
-  string sourceUid = 1;
-  int32 targetX = 2;
-  int32 targetY = 3;
-}

@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var K = require("../dist/");
+var K = require("../lib/");
 console.log(K);
-var dist_1 = require("../dist");
-console.log(dist_1.Protocol);
+var lib_1 = require("../lib");
+console.log(lib_1.Protocol);
 // import { Axial, Protocol, TileInfo } from '../dist/';
 test('export', function () {
     // const axial = new Axial(0, 0);

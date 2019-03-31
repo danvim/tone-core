@@ -1,6 +1,6 @@
-import * as K from '../dist/';
+import * as K from '../lib/';
 console.log(K);
-import { Protocol } from '../dist';
+import { Protocol } from '../lib';
 console.log(Protocol);
 // import { Axial, Protocol, TileInfo } from '../dist/';
 

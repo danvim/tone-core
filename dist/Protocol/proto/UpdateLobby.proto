@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-message UpdateLobby {
-  int32 playerid = 1;
-  string username = 2;
-}
