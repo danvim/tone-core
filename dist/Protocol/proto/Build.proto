@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message Build {
+  int32 playerId = 1;
+  string uid = 2;
+  int32 buildingType = 3;
+  int32 targetX = 4;
+  int32 targetY = 5;
+}

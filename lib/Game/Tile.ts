@@ -1,9 +1,14 @@
 export enum TileType {
-  EMPTY,
   VOID,
+  EMPTY,
   INFORMATION_CLUSTER,
   MOUNTAIN,
   WIRES
+}
+
+export enum TileSize {
+  SMALL,
+  LARGE
 }
 
 export interface TileInfo {

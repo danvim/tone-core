@@ -31,11 +31,18 @@ async function init() {
 }
 
 async function loadProto(name: string) {
-  const root = await protobuf.load(`./proto/${name}.proto`);
-  const Message = root.lookupType(name);
-  encoder["encode" + name] = (object: object) =>
-    Message.encode(Message.create(object)).finish();
-  decoder["decode" + name] = (buffer: Uint8Array) => Message.decode(buffer);
+  try {
+    const root = await protobuf.load(`${__dirname}/proto/${name}.proto`);
+    const Message = root.lookupType(name);
+    encoder["encode" + name] = (object: object) => {
+      const buf = Message.encode(Message.create(object)).finish();
+      // console.log(buf, Message.decode(buf));
+      return buf;
+    };
+    decoder["decode" + name] = (buffer: any) => Message.decode(buffer);
+  } catch (e) {
+    console.log(name, e);
+  }
 }
 
 init();
@@ -51,8 +58,8 @@ const getInitState = async () => {
 
 export default {
   init,
-  ...decoder,
-  ...encoder,
+  decoder,
+  encoder,
   awaitInitDone,
   getInitState,
   initState

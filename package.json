@@ -1,12 +1,14 @@
 {
   "name": "tone-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Data structure for tone-server and tone",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "watch": "tsc -w",
+    "serve": "nodemon test/server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
   "dependencies": {
     "@types/jest": "^24.0.11",
     "@types/peerjs": "0.0.30",
+    "arraybuffer-concat": "0.0.1",
     "blob-polyfill": "^3.0.20180112",
     "peer": "^0.2.10",
     "peerjs": "^0.3.24",
