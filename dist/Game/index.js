@@ -1,5 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Building = require("./Building");
+exports.Building = Building;
+var Customization = require("./Customization");
+exports.Customization = Customization;
+var FightingStyle = require("./FightingStyle");
+exports.FightingStyle = FightingStyle;
+var Race = require("./Race");
+exports.Race = Race;
+var UnitType = require("./UnitType");
+exports.UnitType = UnitType;
 var Tile = require("./Tile");
 exports.Tile = Tile;
-exports.default = { Tile: Tile };
+exports.default = { Building: Building, Customization: Customization, FightingStyle: FightingStyle, Race: Race, UnitType: UnitType, Tile: Tile };

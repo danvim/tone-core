@@ -11,6 +11,8 @@ const Protocol = require("../dist/Protocol/").default;
 const ProtoBuf = require("../dist/Protocol/Protobuf").default;
 const PackageTypes = require("../dist/Protocol/PackageTypes").PackageTypes;
 
+const Game = require("../dist/Game").default;
+console.log(Game);
 // @ts-ignore
 global.postMessage = (...arg) => console.log(arg);
 

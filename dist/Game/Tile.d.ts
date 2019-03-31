@@ -4,6 +4,10 @@ export declare enum TileType {
     POOL = 2,
     HALL = 3
 }
+export declare enum TileSize {
+    SMALL = 0,
+    LARGE = 1
+}
 export declare type TileInfo = {
     type: TileType;
     height?: number;
