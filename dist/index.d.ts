@@ -9,6 +9,11 @@ declare const _default: {
         HexCube: typeof import("./Coordinates").HexCube;
     };
     Game: {
+        Building: typeof import("./Game/Building");
+        Customization: typeof import("./Game/Customization");
+        FightingStyle: typeof import("./Game/FightingStyle");
+        Race: typeof import("./Game/Race");
+        UnitType: typeof import("./Game/UnitType");
         Tile: typeof import("./Game/Tile");
     };
 };

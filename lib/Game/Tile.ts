@@ -5,6 +5,11 @@ export enum TileType {
   HALL
 }
 
+export enum TileSize {
+  SMALL,
+  LARGE
+}
+
 export type TileInfo = {
   type: TileType;
   height?: number;

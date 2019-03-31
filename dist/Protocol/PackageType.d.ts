@@ -2,7 +2,7 @@ export declare enum PackageType {
     ASSIGN_ID = 0,
     BUILD = 1,
     CUSTOMIZE = 2,
-    ENTITYMOVE = 3,
+    ENTITY_MOVE = 3,
     MESSAGE = 4,
     MOVE_UNIT = 5,
     START_GAME = 6,
