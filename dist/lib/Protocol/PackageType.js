@@ -20,5 +20,5 @@ var PackageType;
     PackageType[PackageType["TRY_START_GAME"] = 15] = "TRY_START_GAME";
     PackageType[PackageType["UPDATE_HEALTH"] = 16] = "UPDATE_HEALTH";
     PackageType[PackageType["UPDATE_LOBBY"] = 17] = "UPDATE_LOBBY";
-    PackageType[PackageType["UPDATE_TIELS"] = 18] = "UPDATE_TIELS";
+    PackageType[PackageType["UPDATE_TILES"] = 18] = "UPDATE_TILES";
 })(PackageType = exports.PackageType || (exports.PackageType = {}));

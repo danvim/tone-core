@@ -17,5 +17,5 @@ export declare enum PackageType {
     TRY_START_GAME = 15,
     UPDATE_HEALTH = 16,
     UPDATE_LOBBY = 17,
-    UPDATE_TIELS = 18
+    UPDATE_TILES = 18
 }
