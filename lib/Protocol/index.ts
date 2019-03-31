@@ -5,11 +5,12 @@ var aconcat = require("arraybuffer-concat");
 const Protobuf = require("./Protobuf").default;
 import { UPPER_SNAKE2UpperCamel } from "../helper";
 
-type ProtocolCallback = (data: object) => any;
+type ProtocolCallback = (data: object, conn: Conn) => any;
 
-export class Protocol {
+class Protocol {
   conns: Array<Conn>;
   listeners: { [type: number]: ProtocolCallback };
+  static PackageType = PackageType;
   constructor() {
     this.conns = [];
     this.listeners = [];
@@ -30,12 +31,12 @@ export class Protocol {
         const decoded = Protobuf.decoder[
           "decode" + UPPER_SNAKE2UpperCamel(PackageType[event])
         ](buf);
-        this.listeners[event](decoded);
+        this.listeners[event](decoded, conn);
       }
     });
     this.conns.push(conn);
   }
-  on(event: number, callback: ProtocolCallback) {
+  on(event: PackageType, callback: ProtocolCallback) {
     // console.log("on", event);
     this.listeners[event] = callback;
   }
@@ -63,8 +64,7 @@ export class Protocol {
     playerId: number,
     uid: string,
     buildingType: number,
-    targetX: number,
-    targetY: number
+    axialCoords: string
   ) {
     this.send(
       aconcat(
@@ -73,8 +73,7 @@ export class Protocol {
           playerId,
           uid,
           buildingType,
-          targetX,
-          targetY
+          axialCoords
         })
       )
     );
@@ -150,11 +149,11 @@ export class Protocol {
       )
     );
   }
-  TryBuild(x: number, y: number, buildingType: number) {
+  TryBuild(axialCoords: string, buildingType: number) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_BUILD]),
-        Protobuf.encoder.encodeTryBuild({ x, y, buildingType })
+        Protobuf.encoder.encodeTryBuild({ axialCoords, buildingType })
       )
     );
   }
@@ -217,3 +216,5 @@ export class Protocol {
 }
 
 export default Protocol;
+
+export { PackageType, Protocol };

@@ -9,18 +9,28 @@ export enum BuildingType {
   TRAINING_DATA_GENERATOR,
   PRIME_DATA_GENERATOR,
   SHIELD_GENERATOR,
-  INFORMATION_CLUSTOR,
   ATTACK_PLANT,
   GROWING_PLANT,
   GROWING_MOTHER,
-  REPAIRE_PLANT
+  REPAIR_PLANT
 }
 
-export default {
+interface BuildingPropertyInterface {
+  size: number;
+  struct: number;
+}
+
+export const BuildingProperty: {
+  [k in BuildingType]: BuildingPropertyInterface
+} = {
   [BuildingType.BASE]: {
-    size: TileSize.SMALL
+    size: TileSize.SMALL,
+    struct: 0
   },
-  [BuildingType.SPAWN_POINT]: {},
+  [BuildingType.SPAWN_POINT]: {
+    size: TileSize.SMALL,
+    struct: 0
+  },
   [BuildingType.STRUCT_GENERATOR]: {
     size: TileSize.SMALL,
     struct: 5
@@ -42,6 +52,22 @@ export default {
     struct: 5
   },
   [BuildingType.SHIELD_GENERATOR]: {
+    size: TileSize.SMALL,
+    struct: 5
+  },
+  [BuildingType.ATTACK_PLANT]: {
+    size: TileSize.SMALL,
+    struct: 5
+  },
+  [BuildingType.GROWING_PLANT]: {
+    size: TileSize.SMALL,
+    struct: 5
+  },
+  [BuildingType.GROWING_MOTHER]: {
+    size: TileSize.SMALL,
+    struct: 5
+  },
+  [BuildingType.REPAIR_PLANT]: {
     size: TileSize.SMALL,
     struct: 5
   }

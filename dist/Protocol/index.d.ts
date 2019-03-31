@@ -1,19 +1,20 @@
 /// <reference types="peerjs" />
 import { PackageType } from "./PackageType";
 import Conn = PeerJs.DataConnection;
-declare type ProtocolCallback = (data: object) => any;
-export declare class Protocol {
+declare type ProtocolCallback = (data: object, conn: Conn) => any;
+declare class Protocol {
     conns: Array<Conn>;
     listeners: {
         [type: number]: ProtocolCallback;
     };
+    static PackageType: typeof PackageType;
     constructor();
     add(conn: Conn): void;
-    on(event: number, callback: ProtocolCallback): void;
+    on(event: PackageType, callback: ProtocolCallback): void;
     emit(event: PackageType, object: Object): void;
     send(buff: Uint8Array): void;
     AssignId(playerId: number): void;
-    Build(playerId: number, uid: string, buildingType: number, targetX: number, targetY: number): void;
+    Build(playerId: number, uid: string, buildingType: number, axialCoords: string): void;
     Customize(Customization: {
         race: number;
         map: number;
@@ -24,7 +25,7 @@ export declare class Protocol {
     StartGame(): void;
     SetAnimation(uid: string, animType: number): void;
     TryAttack(sourceUid: string, targetUid: string): void;
-    TryBuild(x: number, y: number, buildingType: number): void;
+    TryBuild(axialCoords: string, buildingType: number): void;
     TryCustomize(Customization: {
         race: number;
         map: number;
@@ -37,3 +38,4 @@ export declare class Protocol {
     UpdateLobby(playerId: number, username: string): void;
 }
 export default Protocol;
+export { PackageType, Protocol };
