@@ -53,13 +53,12 @@ var Protocol = /** @class */ (function () {
         // console.log(buf);
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.ASSIGN_ID]), buf));
     };
-    Protocol.prototype.Build = function (playerId, uid, buildingType, targetX, targetY) {
+    Protocol.prototype.Build = function (playerId, uid, buildingType, axialCoords) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.BUILD]), Protobuf.encoder.encodeBuild({
             playerId: playerId,
             uid: uid,
             buildingType: buildingType,
-            targetX: targetX,
-            targetY: targetY
+            axialCoords: axialCoords
         })));
     };
     Protocol.prototype.Customize = function (Customization) {
@@ -93,8 +92,8 @@ var Protocol = /** @class */ (function () {
     Protocol.prototype.TryAttack = function (sourceUid, targetUid) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_ATTACK]), Protobuf.encoder.encodeTryAttack({ sourceUid: sourceUid, targetUid: targetUid })));
     };
-    Protocol.prototype.TryBuild = function (x, y, buildingType) {
-        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_BUILD]), Protobuf.encoder.encodeTryBuild({ x: x, y: y, buildingType: buildingType })));
+    Protocol.prototype.TryBuild = function (axialCoords, buildingType) {
+        this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_BUILD]), Protobuf.encoder.encodeTryBuild({ axialCoords: axialCoords, buildingType: buildingType })));
     };
     Protocol.prototype.TryCustomize = function (Customization) {
         this.send(aconcat(new Uint8Array([PackageType_1.PackageType.TRY_CUSTOMIZE]), Protobuf.encoder.encodeTryCustomize(Customization)));

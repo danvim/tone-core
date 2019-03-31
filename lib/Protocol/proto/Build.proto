@@ -4,8 +4,7 @@ message Build {
   int32 playerId = 1;
   string uid = 2;
   int32 buildingType = 3;
-  int32 targetX = 4;
-  int32 targetY = 5;
-  uint32 variant = 6;
-  uint32 progress = 7;
+  string axialCoords = 4;
+  uint32 variant = 5;
+  uint32 progress = 6;
 }

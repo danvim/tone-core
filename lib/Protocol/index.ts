@@ -36,7 +36,7 @@ class Protocol {
     });
     this.conns.push(conn);
   }
-  on(event: number, callback: ProtocolCallback) {
+  on(event: PackageType, callback: ProtocolCallback) {
     // console.log("on", event);
     this.listeners[event] = callback;
   }
@@ -64,8 +64,7 @@ class Protocol {
     playerId: number,
     uid: string,
     buildingType: number,
-    targetX: number,
-    targetY: number
+    axialCoords: string
   ) {
     this.send(
       aconcat(
@@ -74,8 +73,7 @@ class Protocol {
           playerId,
           uid,
           buildingType,
-          targetX,
-          targetY
+          axialCoords
         })
       )
     );
@@ -151,11 +149,11 @@ class Protocol {
       )
     );
   }
-  TryBuild(x: number, y: number, buildingType: number) {
+  TryBuild(axialCoords: string, buildingType: number) {
     this.send(
       aconcat(
         new Uint8Array([PackageType.TRY_BUILD]),
-        Protobuf.encoder.encodeTryBuild({ x, y, buildingType })
+        Protobuf.encoder.encodeTryBuild({ axialCoords, buildingType })
       )
     );
   }

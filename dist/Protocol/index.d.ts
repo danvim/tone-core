@@ -10,11 +10,11 @@ declare class Protocol {
     static PackageType: typeof PackageType;
     constructor();
     add(conn: Conn): void;
-    on(event: number, callback: ProtocolCallback): void;
+    on(event: PackageType, callback: ProtocolCallback): void;
     emit(event: PackageType, object: Object): void;
     send(buff: Uint8Array): void;
     AssignId(playerId: number): void;
-    Build(playerId: number, uid: string, buildingType: number, targetX: number, targetY: number): void;
+    Build(playerId: number, uid: string, buildingType: number, axialCoords: string): void;
     Customize(Customization: {
         race: number;
         map: number;
@@ -25,7 +25,7 @@ declare class Protocol {
     StartGame(): void;
     SetAnimation(uid: string, animType: number): void;
     TryAttack(sourceUid: string, targetUid: string): void;
-    TryBuild(x: number, y: number, buildingType: number): void;
+    TryBuild(axialCoords: string, buildingType: number): void;
     TryCustomize(Customization: {
         race: number;
         map: number;
