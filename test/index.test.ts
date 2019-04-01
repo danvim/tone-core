@@ -1,7 +1,7 @@
 import * as K from '../lib/';
-global.console.log(K);
+// global.console.log(K);
 import { Protocol } from '../lib';
-global.console.log(Protocol);
+// global.console.log(Protocol);
 // import { Axial, Protocol, TileInfo } from '../dist/';
 
 test('export', () => {

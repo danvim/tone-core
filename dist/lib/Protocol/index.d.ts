@@ -2,7 +2,7 @@
 import { PackageType } from './PackageType';
 import Conn = PeerJs.DataConnection;
 import { Message } from 'protobufjs';
-declare type ProtocolCallback = (data: any, conn: Conn) => any;
+declare type ProtocolCallback = (data: Message<any>, conn: Conn) => void;
 declare class Protocol {
     static PackageType: typeof PackageType;
     static encode(packageType: PackageType, object: object): Uint8Array;

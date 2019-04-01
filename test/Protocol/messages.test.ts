@@ -1,8 +1,8 @@
 import * as protobuf from 'protobufjs';
 import AttackMessage from '../../lib/Protocol/messages/AttackMessage';
-import {BuildingType} from '../../lib/Game';
-import {Axial} from '../../lib/Coordinates';
-import {BuildMessage, AxialMessage} from '../../lib/Protocol/messages';
+import { BuildingType } from '../../lib/Game';
+import { Axial } from '../../lib/Coordinates';
+import { BuildMessage, AxialMessage } from '../../lib/Protocol/messages';
 
 describe('typescript decorators', () => {
   it('AttackMessage', () => {
@@ -52,9 +52,7 @@ describe('typescript decorators', () => {
       playerId: 0,
       uid: 'k',
       buildingType: BuildingType.RECLAIMATOR,
-      axialCoords: [
-        {q: 1, r: 2},
-      ],
+      axialCoords: [{ q: 1, r: 2 }],
       progress: 6,
     };
 
@@ -69,9 +67,11 @@ describe('typescript decorators', () => {
     const q = 1;
     const r = 2;
 
-    const axialMessage = AxialMessage.create({q, r});
+    const axialMessage = AxialMessage.create({ q, r });
     const axial = new Axial(q, r);
 
-    expect(AxialMessage.fromObject(axialMessage.toJSON()).toAxial()).toEqual(axial);
+    expect(AxialMessage.fromObject(axialMessage.toJSON()).toAxial()).toEqual(
+      axial,
+    );
   });
 });

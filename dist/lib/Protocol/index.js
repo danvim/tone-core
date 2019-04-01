@@ -13,7 +13,9 @@ var Protocol = /** @class */ (function () {
         this.listeners = [];
     }
     Protocol.encode = function (packageType, object) {
-        return aconcat(new Uint8Array([packageType]), PackageType_1.getPackageClass(packageType).encode(object).finish());
+        return aconcat(new Uint8Array([packageType]), PackageType_1.getPackageClass(packageType)
+            .encode(object)
+            .finish());
     };
     Protocol.decode = function (data) {
         var buf = data.slice(1);

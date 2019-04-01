@@ -1,6 +1,6 @@
-import {Message, Reader, Writer} from 'protobufjs';
+import { Message, Reader, Writer } from 'protobufjs';
 import * as messages from './messages';
-import {UPPER_SNAKE2UpperCamel} from '../helper';
+import { UPPER_SNAKE2UpperCamel } from '../helper';
 
 export enum PackageType {
   ATTACK,
@@ -24,13 +24,14 @@ export enum PackageType {
 }
 
 interface MessageConstructor {
-  new(...args: any[]): Message;
+  new (...args: any[]): Message;
   create(object: any): Message;
   encode(object: any): Writer;
-  decode(reder: (Reader|Uint8Array)): any;
+  decode(reder: Reader | Uint8Array): any;
 }
 
 export function getPackageClass(packageType: PackageType): MessageConstructor {
-  const className: string = UPPER_SNAKE2UpperCamel(PackageType[packageType]) + 'Message';
-  return (messages as {[k in string]: MessageConstructor})[className];
+  const className: string =
+    UPPER_SNAKE2UpperCamel(PackageType[packageType]) + 'Message';
+  return (messages as { [k in string]: MessageConstructor })[className];
 }

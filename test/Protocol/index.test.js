@@ -1,36 +1,19 @@
 // const peerjs = require("peerjs-nodejs");
-const Protobuf = require("../../lib/Protocol/Protobuf").default;
-const Protocol = require("../../lib/Protocol").Protocol;
+const { Protocol, PackageType } = require('../../lib/Protocol');
 
-test("protobuf", async done => {
-  await Protobuf.awaitInitDone();
-  const {
-    encoder: { encodeMessage },
-    decoder: { decodeMessage }
-  } = Protobuf;
-  const data = encodeMessage({ content: "Message" });
-  expect(decodeMessage(data).content).toBe("Message");
-  done();
-});
-
-test("protobuf-tiles", async done => {
-  await Protobuf.awaitInitDone();
-  const {
-    encoder: { encodeUpdateTiles },
-    decoder: { decodeUpdateTiles }
-  } = Protobuf;
-  const object = {
-    tiles: {
-      "1,2": { height: 12, type: 4 },
-      "100,99": { height: 5, type: 7 }
-    }
-  };
-  const data = encodeUpdateTiles(object);
-  expect(decodeUpdateTiles(data)).toEqual(object);
-  done();
-});
-
-test("Protocol", () => {
+test('Protocol', () => {
   const protocol = new Protocol();
   expect(1).toBe(1);
+});
+
+test('Protocl.encode', () => {
+  const buf = Protocol.encode(PackageType.TRY_JOIN_LOBBY, { username: 'hi' });
+  console.log(buf);
+  expect(buf).toBeTruthy();
+});
+
+test('Protocl.encode', () => {
+  const buf = Protocol.encode(PackageType.START_GAME, {});
+  console.log(buf);
+  expect(buf).toBeTruthy();
 });

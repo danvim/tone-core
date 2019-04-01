@@ -23,7 +23,7 @@ interface MessageConstructor {
     new (...args: any[]): Message;
     create(object: any): Message;
     encode(object: any): Writer;
-    decode(reder: (Reader | Uint8Array)): any;
+    decode(reder: Reader | Uint8Array): any;
 }
 export declare function getPackageClass(packageType: PackageType): MessageConstructor;
 export {};

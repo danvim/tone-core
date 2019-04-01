@@ -29,9 +29,7 @@ describe('typescript decorators', function () {
             playerId: 0,
             uid: 'k',
             buildingType: Game_1.BuildingType.RECLAIMATOR,
-            axialCoords: [
-                { q: 1, r: 2 },
-            ],
+            axialCoords: [{ q: 1, r: 2 }],
             progress: 6,
         };
         var protoTypeMessage = protoType.create(content);

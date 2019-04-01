@@ -1,6 +1,6 @@
-import {getPackageClass, PackageType} from './PackageType';
+import { getPackageClass, PackageType } from './PackageType';
 import Conn = PeerJs.DataConnection;
-import {Message} from 'protobufjs';
+import { Message } from 'protobufjs';
 // tslint:disable-next-line:no-var-requires
 const aconcat = require('arraybuffer-concat');
 
@@ -9,11 +9,18 @@ type ProtocolCallback = (data: Message<any>, conn: Conn) => void;
 class Protocol {
   public static PackageType = PackageType;
   public static encode(packageType: PackageType, object: object): Uint8Array {
-    return aconcat(new Uint8Array([packageType]), getPackageClass(packageType).encode(object).finish());
+    return aconcat(
+      new Uint8Array([packageType]),
+      getPackageClass(packageType)
+        .encode(object)
+        .finish(),
+    );
   }
   public static decode(data: Uint8Array): Message<any> {
     const buf = data.slice(1);
-    return getPackageClass(new DataView(data).getUint8(0)).decode(new Uint8Array(buf));
+    return getPackageClass(new DataView(data).getUint8(0)).decode(
+      new Uint8Array(buf),
+    );
   }
   public conns: Conn[];
   public listeners: { [type: number]: ProtocolCallback };
