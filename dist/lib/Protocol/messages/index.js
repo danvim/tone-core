@@ -42,5 +42,5 @@ var UpdateHealthMessage_1 = require("./UpdateHealthMessage");
 exports.UpdateHealthMessage = UpdateHealthMessage_1.default;
 var UpdateLobbyMessage_1 = require("./UpdateLobbyMessage");
 exports.UpdateLobbyMessage = UpdateLobbyMessage_1.default;
-var UpdateTileMessage_1 = require("./UpdateTileMessage");
-exports.UpdateTileMessage = UpdateTileMessage_1.default;
+var UpdateTilesMessage_1 = require("./UpdateTilesMessage");
+exports.UpdateTilesMessage = UpdateTilesMessage_1.default;

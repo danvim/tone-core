@@ -20,4 +20,4 @@ export { default as TrySetPolicyMessage } from './TrySetPolicyMessage';
 export { default as TryStartGameMessage } from './TryStartGameMessage';
 export { default as UpdateHealthMessage } from './UpdateHealthMessage';
 export { default as UpdateLobbyMessage } from './UpdateLobbyMessage';
-export { default as UpdateTileMessage } from './UpdateTileMessage';
+export { default as UpdateTilesMessage } from './UpdateTilesMessage';
