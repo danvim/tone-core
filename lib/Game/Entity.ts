@@ -1,7 +1,7 @@
-import { Thing } from './Thing';
+import { ThingInterface } from './Thing';
 import { Cartesian, XyzEuler } from '../Coordinates';
 
-export interface Entity extends Thing {
+export interface EntityInterface extends ThingInterface {
   position: Cartesian;
   rotation: XyzEuler;
 }

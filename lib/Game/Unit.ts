@@ -1,5 +1,5 @@
-import { Entity } from './Entity';
+import { EntityInterface } from './Entity';
 import { FightingStyle } from './FightingStyle';
-export interface Unit extends Entity {
+export interface Unit extends EntityInterface {
   fightingStyle: FightingStyle;
 }
