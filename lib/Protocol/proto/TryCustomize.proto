@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-message Customize {
+message TryCustomize {
    int32 race = 1;
    int32 map = 2;
 }

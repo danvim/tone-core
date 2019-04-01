@@ -4,3 +4,6 @@ export * from './FightingStyle';
 export * from './Race';
 export * from './Tile';
 export * from './AnimType';
+export * from './Entity';
+export * from './Thing';
+export * from './Unit';

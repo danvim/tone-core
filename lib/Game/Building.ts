@@ -1,4 +1,6 @@
 import { TileSize } from './Tile';
+import { Thing } from './Thing';
+import { Axial } from '../Coordinates';
 
 export enum BuildingType {
   BASE,
@@ -72,3 +74,8 @@ export const BuildingProperty: {
     struct: 5,
   },
 };
+
+export interface Building extends Thing {
+  buildingType: BuildingType;
+  tilePosition: Axial;
+}
