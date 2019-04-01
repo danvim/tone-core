@@ -35,9 +35,6 @@ var AxialMessage = /** @class */ (function (_super) {
     __decorate([
         protobufjs_1.Field.d(2, 'int32')
     ], AxialMessage.prototype, "r", void 0);
-    AxialMessage = __decorate([
-        protobufjs_1.Type.d('AxialMessage')
-    ], AxialMessage);
     return AxialMessage;
 }(protobufjs_1.Message));
 exports.default = AxialMessage;

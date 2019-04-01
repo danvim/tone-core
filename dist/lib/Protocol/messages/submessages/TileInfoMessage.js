@@ -38,9 +38,6 @@ var TileInfoMessage = /** @class */ (function (_super) {
     __decorate([
         protobufjs_1.Field.d(2, 'int32')
     ], TileInfoMessage.prototype, "height", void 0);
-    TileInfoMessage = __decorate([
-        protobufjs_1.Type.d('TileInfoMessage')
-    ], TileInfoMessage);
     return TileInfoMessage;
 }(protobufjs_1.Message));
 exports.default = TileInfoMessage;

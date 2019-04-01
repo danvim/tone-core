@@ -31,9 +31,6 @@ var Cartesian2Message = /** @class */ (function (_super) {
     __decorate([
         protobufjs_1.Field.d(2, 'int32')
     ], Cartesian2Message.prototype, "z", void 0);
-    Cartesian2Message = __decorate([
-        protobufjs_1.Type.d('Cartesian2Message')
-    ], Cartesian2Message);
     return Cartesian2Message;
 }(protobufjs_1.Message));
 exports.default = Cartesian2Message;

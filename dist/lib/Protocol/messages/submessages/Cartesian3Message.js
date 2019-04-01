@@ -34,9 +34,6 @@ var Cartesian3Message = /** @class */ (function (_super) {
     __decorate([
         protobufjs_1.Field.d(3, 'int32')
     ], Cartesian3Message.prototype, "z", void 0);
-    Cartesian3Message = __decorate([
-        protobufjs_1.Type.d('Cartesian3Message')
-    ], Cartesian3Message);
     return Cartesian3Message;
 }(protobufjs_1.Message));
 exports.default = Cartesian3Message;

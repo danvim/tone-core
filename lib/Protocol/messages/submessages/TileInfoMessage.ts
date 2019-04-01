@@ -1,7 +1,6 @@
-import {Field, Message, Type} from 'protobufjs';
+import {Field, Message} from 'protobufjs';
 import {TileInfo, TileType} from '../../../Game';
 
-@Type.d('TileInfoMessage')
 export default class TileInfoMessage extends Message<TileInfoMessage> {
   @Field.d(1, TileType) public type!: TileType;
   @Field.d(2, 'int32') public height!: number;
