@@ -6,3 +6,5 @@ var Cartesian_1 = require("./Cartesian");
 exports.Cartesian = Cartesian_1.default;
 var HexCube_1 = require("./HexCube");
 exports.HexCube = HexCube_1.default;
+var XyzEuler_1 = require("./XyzEuler");
+exports.XyzEuler = XyzEuler_1.default;

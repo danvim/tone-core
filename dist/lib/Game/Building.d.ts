@@ -1,3 +1,5 @@
+import { ThingInterface } from './Thing';
+import { Axial } from '../Coordinates';
 export declare enum BuildingType {
     BASE = 0,
     SPAWN_POINT = 1,
@@ -19,4 +21,8 @@ interface BuildingPropertyInterface {
 export declare const BuildingProperty: {
     [k in BuildingType]: BuildingPropertyInterface;
 };
+export interface BuildingInterface extends ThingInterface {
+    buildingType: BuildingType;
+    tilePosition: Axial;
+}
 export {};

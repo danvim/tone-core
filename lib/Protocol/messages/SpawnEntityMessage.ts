@@ -1,6 +1,6 @@
-import {Field, Message, Type} from 'protobufjs';
+import { Field, Message, Type } from 'protobufjs';
 import CartesianMessage from './submessages/CartesianMessage';
-import {EntityType} from '../../Game/EntityType';
+import { EntityType } from '../../Game/Entity';
 
 @Type.d('SpawnEntityMessage')
 export default class SpawnEntityMessage extends Message<SpawnEntityMessage> {
