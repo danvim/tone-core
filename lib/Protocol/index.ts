@@ -8,7 +8,7 @@ type ProtocolCallback = (data: Message<any>, conn: Conn) => void;
 
 class Protocol {
   public static PackageType = PackageType;
-  public static encode(packageType: PackageType, object: object): Uint8Array {
+  public static encode(packageType: PackageType, object: any): Uint8Array {
     return aconcat(
       new Uint8Array([packageType]),
       getPackageClass(packageType)

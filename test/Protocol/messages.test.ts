@@ -2,7 +2,8 @@ import * as protobuf from 'protobufjs';
 import AttackMessage from '../../lib/Protocol/messages/AttackMessage';
 import { BuildingType } from '../../lib/Game';
 import { Axial } from '../../lib/Coordinates';
-import { BuildMessage, AxialMessage } from '../../lib/Protocol/messages';
+import { BuildMessage } from '../../lib/Protocol/messages';
+import AxialMessage from '../../lib/Protocol/messages/submessages/AxialMessage';
 
 describe('typescript decorators', () => {
   it('AttackMessage', () => {
