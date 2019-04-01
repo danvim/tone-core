@@ -1,0 +1,10 @@
+export enum AnimType {
+  STILL,
+  MOVING,
+  ATTACKING,
+  DEFENDING,
+  TAKING_DAMAGE,
+  CARRYING,
+  PLACING,
+  DYING,
+}
