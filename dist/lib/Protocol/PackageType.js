@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var messages = require("./messages");
+var helper_1 = require("../helper");
 var PackageType;
 (function (PackageType) {
     PackageType[PackageType["ATTACK"] = 0] = "ATTACK";
     PackageType[PackageType["BUILD"] = 1] = "BUILD";
     PackageType[PackageType["CUSTOMIZE"] = 2] = "CUSTOMIZE";
-    PackageType[PackageType["MESSAGE"] = 3] = "MESSAGE";
+    PackageType[PackageType["CHAT"] = 3] = "CHAT";
     PackageType[PackageType["MOVE_ENTITY"] = 4] = "MOVE_ENTITY";
     PackageType[PackageType["SET_ANIMATION"] = 5] = "SET_ANIMATION";
     PackageType[PackageType["SPAWN_ENTITY"] = 6] = "SPAWN_ENTITY";
@@ -21,3 +23,8 @@ var PackageType;
     PackageType[PackageType["UPDATE_LOBBY"] = 16] = "UPDATE_LOBBY";
     PackageType[PackageType["UPDATE_TILES"] = 17] = "UPDATE_TILES";
 })(PackageType = exports.PackageType || (exports.PackageType = {}));
+function getPackageClass(packageType) {
+    var className = helper_1.UPPER_SNAKE2UpperCamel(PackageType[packageType]) + 'Message';
+    return messages[className];
+}
+exports.getPackageClass = getPackageClass;

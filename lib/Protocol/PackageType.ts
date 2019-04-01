@@ -1,8 +1,12 @@
+import {Message, Reader, Writer} from 'protobufjs';
+import * as messages from './messages';
+import {UPPER_SNAKE2UpperCamel} from '../helper';
+
 export enum PackageType {
   ATTACK,
   BUILD,
   CUSTOMIZE,
-  MESSAGE,
+  CHAT,
   MOVE_ENTITY,
   SET_ANIMATION,
   SPAWN_ENTITY,
@@ -17,4 +21,16 @@ export enum PackageType {
   UPDATE_HEALTH,
   UPDATE_LOBBY,
   UPDATE_TILES,
+}
+
+interface MessageConstructor {
+  new(...args: any[]): Message;
+  create(object: any): Message;
+  encode(object: any): Writer;
+  decode(reder: (Reader|Uint8Array)): any;
+}
+
+export function getPackageClass(packageType: PackageType): MessageConstructor {
+  const className: string = UPPER_SNAKE2UpperCamel(PackageType[packageType]) + 'Message';
+  return (messages as {[k in string]: MessageConstructor})[className];
 }

@@ -7,9 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "watch": "tsc-watch --onSuccess \"npm run build-done\"",
-    "build-done": "cross-env npm run copy-proto && npm run lint",
-    "copy-proto": "cpy \"lib/**/*.proto\" \"dist\" --cwd=\"./\" --parents",
+    "watch": "tsc-watch --onSuccess \"npm run lint\"",
     "serve": "nodemon test/server.js",
     "lint": "tslint -c tslint.json -t code-frame lib/**/*.ts"
   },
@@ -24,16 +22,15 @@
   },
   "homepage": "https://github.com/danvim/tone-core#readme",
   "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/peerjs": "0.0.30",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "jest": "^24.5.0",
     "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333",
-    "tslint": "^5.14.0",
     "tsc-watch": "^2.1.2",
-    "cpy-cli": "^2.0.0",
-    "@types/jest": "^24.0.11",
-    "@types/peerjs": "0.0.30"
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.3333"
   },
   "dependencies": {
     "arraybuffer-concat": "0.0.1",

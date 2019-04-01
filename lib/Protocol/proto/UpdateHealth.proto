@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-message UpdateHealth {
-  string uid = 1;
-  int32 hp = 2;
-}

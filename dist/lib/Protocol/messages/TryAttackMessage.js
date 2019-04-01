@@ -29,7 +29,7 @@ var TryAttackMessage = /** @class */ (function (_super) {
         protobufjs_1.Field.d(1, 'string')
     ], TryAttackMessage.prototype, "sourceUid", void 0);
     __decorate([
-        protobufjs_1.Field.d(1, 'string')
+        protobufjs_1.Field.d(2, 'string')
     ], TryAttackMessage.prototype, "targetUid", void 0);
     TryAttackMessage = __decorate([
         protobufjs_1.Type.d('TryAttackMessage')

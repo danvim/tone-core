@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-message Customize {
-   int32 race = 1;
-   int32 map = 2;
-   int32 playerId = 3;
-}
