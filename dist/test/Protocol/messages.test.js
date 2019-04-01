@@ -5,6 +5,7 @@ var AttackMessage_1 = require("../../lib/Protocol/messages/AttackMessage");
 var Game_1 = require("../../lib/Game");
 var Coordinates_1 = require("../../lib/Coordinates");
 var messages_1 = require("../../lib/Protocol/messages");
+var AxialMessage_1 = require("../../lib/Protocol/messages/submessages/AxialMessage");
 describe('typescript decorators', function () {
     it('AttackMessage', function () {
         // language=PROTO
@@ -40,8 +41,8 @@ describe('typescript decorators', function () {
     it('Reconstruct Axial from AxialMessage', function () {
         var q = 1;
         var r = 2;
-        var axialMessage = messages_1.AxialMessage.create({ q: q, r: r });
+        var axialMessage = AxialMessage_1.default.create({ q: q, r: r });
         var axial = new Coordinates_1.Axial(q, r);
-        expect(messages_1.AxialMessage.fromObject(axialMessage.toJSON()).toAxial()).toEqual(axial);
+        expect(AxialMessage_1.default.fromObject(axialMessage.toJSON()).toAxial()).toEqual(axial);
     });
 });

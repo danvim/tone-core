@@ -1,13 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var AxialMessage_1 = require("./submessages/AxialMessage");
-exports.AxialMessage = AxialMessage_1.default;
-var Cartesian3Message_1 = require("./submessages/Cartesian3Message");
-exports.Cartesian3Message = Cartesian3Message_1.default;
-var Cartesian2Message_1 = require("./submessages/Cartesian2Message");
-exports.Cartesian2Message = Cartesian2Message_1.default;
-var TileInfoMessage_1 = require("./submessages/TileInfoMessage");
-exports.TileInfoMessage = TileInfoMessage_1.default;
 var AttackMessage_1 = require("./AttackMessage");
 exports.AttackMessage = AttackMessage_1.default;
 var BuildMessage_1 = require("./BuildMessage");

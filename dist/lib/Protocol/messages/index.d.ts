@@ -1,7 +1,3 @@
-export { default as AxialMessage } from './submessages/AxialMessage';
-export { default as Cartesian3Message } from './submessages/Cartesian3Message';
-export { default as Cartesian2Message } from './submessages/Cartesian2Message';
-export { default as TileInfoMessage } from './submessages/TileInfoMessage';
 export { default as AttackMessage } from './AttackMessage';
 export { default as BuildMessage } from './BuildMessage';
 export { default as ChatMessage } from './ChatMessage';
