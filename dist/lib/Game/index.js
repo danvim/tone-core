@@ -6,5 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./Building"));
 __export(require("./FightingStyle"));
 __export(require("./Race"));
-__export(require("./UnitType"));
 __export(require("./Tile"));
+__export(require("./AnimType"));
+__export(require("./Entity"));

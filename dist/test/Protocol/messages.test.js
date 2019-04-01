@@ -2,10 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var protobuf = require("protobufjs");
 var AttackMessage_1 = require("../../lib/Protocol/messages/AttackMessage");
-var BuildMessage_1 = require("../../lib/Protocol/messages/BuildMessage");
 var Game_1 = require("../../lib/Game");
-var AxialMessage_1 = require("../../lib/Protocol/messages/submessages/AxialMessage");
 var Coordinates_1 = require("../../lib/Coordinates");
+var messages_1 = require("../../lib/Protocol/messages");
 describe('typescript decorators', function () {
     it('AttackMessage', function () {
         // language=PROTO
@@ -36,15 +35,15 @@ describe('typescript decorators', function () {
             progress: 6,
         };
         var protoTypeMessage = protoType.create(content);
-        var decoratorTypeMessage = BuildMessage_1.default.create(content);
+        var decoratorTypeMessage = messages_1.BuildMessage.create(content);
         global.console.log(protoTypeMessage);
         expect(protoTypeMessage).toEqual(decoratorTypeMessage);
     });
     it('Reconstruct Axial from AxialMessage', function () {
         var q = 1;
         var r = 2;
-        var axialMessage = AxialMessage_1.default.create({ q: q, r: r });
+        var axialMessage = messages_1.AxialMessage.create({ q: q, r: r });
         var axial = new Coordinates_1.Axial(q, r);
-        expect(AxialMessage_1.default.fromObject(axialMessage.toJSON()).toAxial()).toEqual(axial);
+        expect(messages_1.AxialMessage.fromObject(axialMessage.toJSON()).toAxial()).toEqual(axial);
     });
 });
