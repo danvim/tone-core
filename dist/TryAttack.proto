@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-message TryAttack {
-  string sourceUid = 1;
-  string targetUid = 2;
-}
