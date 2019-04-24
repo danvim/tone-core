@@ -47,12 +47,38 @@ var Cartesian = /** @class */ (function () {
         return Math.sqrt(Math.pow((this.x - t.x), 2) + Math.pow((this.y - t.y), 2));
     };
     Cartesian.prototype.tileDistance = function (t) {
-        return (this.x - t.x) + (this.y - t.y);
+        return this.x - t.x + (this.y - t.y);
+    };
+    Cartesian.prototype.added = function (coord) {
+        var ret = new Cartesian(this.x, this.y);
+        return ret.add(coord);
+    };
+    Cartesian.prototype.scaled = function (n) {
+        var ret = new Cartesian(this.x, this.y);
+        return ret.scale(n);
+    };
+    Cartesian.prototype.norm = function () {
+        return this.euclideanDistance(Cartesian.origin);
+    };
+    Cartesian.prototype.normalize = function () {
+        return this.scale(1 / this.norm());
+    };
+    Cartesian.prototype.normalized = function () {
+        var ret = new Cartesian(this.x, this.y);
+        return ret.normalize();
+    };
+    Cartesian.prototype.clone = function () {
+        return new Cartesian(this.x, this.y);
     };
     Cartesian.neighbors = [
-        new Cartesian(-1, -1), new Cartesian(0, -1), new Cartesian(1, -1),
-        new Cartesian(-1, 0), new Cartesian(1, 0),
-        new Cartesian(-1, 1), new Cartesian(0, 1), new Cartesian(1, 1),
+        new Cartesian(-1, -1),
+        new Cartesian(0, -1),
+        new Cartesian(1, -1),
+        new Cartesian(-1, 0),
+        new Cartesian(1, 0),
+        new Cartesian(-1, 1),
+        new Cartesian(0, 1),
+        new Cartesian(1, 1),
     ];
     return Cartesian;
 }());

@@ -13,4 +13,10 @@ export default class Cartesian implements CoordinatesInterface<Cartesian> {
     scale(n: number): Cartesian;
     euclideanDistance(t: Cartesian): number;
     tileDistance(t: Cartesian): number;
+    added(coord: Cartesian): Cartesian;
+    scaled(n: number): Cartesian;
+    norm(): number;
+    normalize(): Cartesian;
+    normalized(): Cartesian;
+    clone(): Cartesian;
 }
