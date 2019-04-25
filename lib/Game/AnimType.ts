@@ -1,6 +1,5 @@
 export enum AnimType {
-  STILL,
-  MOVING,
+  DEFAULT,
   ATTACKING,
   DEFENDING,
   TAKING_DAMAGE,

@@ -1,10 +1,9 @@
 export declare enum AnimType {
-    STILL = 0,
-    MOVING = 1,
-    ATTACKING = 2,
-    DEFENDING = 3,
-    TAKING_DAMAGE = 4,
-    CARRYING = 5,
-    PLACING = 6,
-    DYING = 7
+    DEFAULT = 0,
+    ATTACKING = 1,
+    DEFENDING = 2,
+    TAKING_DAMAGE = 3,
+    CARRYING = 4,
+    PLACING = 5,
+    DYING = 6
 }
