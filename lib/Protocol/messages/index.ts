@@ -3,7 +3,7 @@ export { default as BuildMessage } from './BuildMessage';
 export { default as ChatMessage } from './ChatMessage';
 export { default as CustomizeMessage } from './CustomizeMessage';
 export { default as MoveEntityMessage } from './MoveEntityMessage';
-export { default as SetAnimMessage } from './SetAnimMessage';
+export { default as SetAnimationMessage } from './SetAnimationMessage';
 export { default as SpawnEntityMessage } from './SpawnEntityMessage';
 export { default as StartGameMessage } from './StartGameMessage';
 export { default as TryAttackMessage } from './TryAttackMessage';
