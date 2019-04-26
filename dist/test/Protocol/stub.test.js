@@ -45,6 +45,10 @@ describe('stub conn', function () {
         expect(conn1.partner).toBe(conn2);
         expect(conn2.partner).toBe(conn1);
     });
+    it('connected using peerConnection', function () {
+        expect(conn1.peerConnection).toBe(conn2);
+        expect(conn2.peerConnection).toBe(conn1);
+    });
     it('send and recieve', function (done) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             conn2.on('data', function (data) {

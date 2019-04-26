@@ -14,7 +14,13 @@ export class StubConn implements Conn {
   public type: string = 'none';
   public buffSize: number = 1000;
 
-  public partner: StubConn | undefined;
+  public get partner() {
+    return this.peerConnection;
+  }
+
+  public set partner(p) {
+    this.peerConnection = p;
+  }
 
   public onSend: ((data: any) => any) | undefined;
   public onClose: (() => any) | undefined;
@@ -50,7 +56,7 @@ export class StubConn implements Conn {
       this.onSend(data);
     }
     if (this.partner) {
-      this.partner.onData.forEach((cb) => cb(data));
+      this.partner.onData.forEach((cb: (data: any) => any) => cb(data));
     }
   }
   public close(): void {

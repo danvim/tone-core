@@ -8,6 +8,10 @@ describe('stub conn', () => {
     expect(conn1.partner).toBe(conn2);
     expect(conn2.partner).toBe(conn1);
   });
+  it('connected using peerConnection', () => {
+    expect(conn1.peerConnection).toBe(conn2);
+    expect(conn2.peerConnection).toBe(conn1);
+  });
   it('send and recieve', async (done) => {
     conn2.on('data', (data) => {
       expect(data).toBe('hello world');

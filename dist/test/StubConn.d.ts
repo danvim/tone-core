@@ -11,7 +11,7 @@ export declare class StubConn implements Conn {
     serialization: string;
     type: string;
     buffSize: number;
-    partner: StubConn | undefined;
+    partner: any;
     onSend: ((data: any) => any) | undefined;
     onClose: (() => any) | undefined;
     onOpen: (() => any) | undefined;

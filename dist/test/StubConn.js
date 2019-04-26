@@ -14,6 +14,16 @@ var StubConn = /** @class */ (function () {
         this.buffSize = 1000;
         this.onData = [];
     }
+    Object.defineProperty(StubConn.prototype, "partner", {
+        get: function () {
+            return this.peerConnection;
+        },
+        set: function (p) {
+            this.peerConnection = p;
+        },
+        enumerable: true,
+        configurable: true
+    });
     StubConn.prototype.connect = function (p) {
         this.partner = p;
         p.partner = this;

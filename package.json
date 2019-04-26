@@ -2,8 +2,8 @@
   "name": "tone-core",
   "version": "0.0.3",
   "description": "Data structure for tone-server and tone",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest --verbose",
