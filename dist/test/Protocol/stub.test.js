@@ -36,40 +36,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-// const peerjs = require("peerjs-nodejs");
-var Protocol_1 = require("../../lib/Protocol");
-var StubConn_1 = require("../StubConn");
-describe('Protocol', function () {
-    it('Protocol', function () {
-        var protocol = new Protocol_1.Protocol();
-        expect(1).toBe(1);
+var __1 = require("..");
+describe('stub conn', function () {
+    var conn1 = new __1.StubConn();
+    var conn2 = new __1.StubConn();
+    conn1.connect(conn2);
+    it('connected', function () {
+        expect(conn1.partner).toBe(conn2);
+        expect(conn2.partner).toBe(conn1);
     });
-    it('Protocol.encode', function () {
-        var buf = Protocol_1.Protocol.encode(Protocol_1.PackageType.TRY_JOIN_LOBBY, { username: 'hi' });
-        global.console.log(buf);
-        expect(buf).toBeTruthy();
-    });
-    it('Protocol.encode', function () {
-        var buf = Protocol_1.Protocol.encode(Protocol_1.PackageType.START_GAME, {});
-        global.console.log(buf);
-        expect(buf).toBeTruthy();
-    });
-    it('tests with StubConn', function (done) { return __awaiter(_this, void 0, void 0, function () {
-        var protocol1, protocol2, conn1, conn2;
+    it('send and recieve', function (done) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            protocol1 = new Protocol_1.Protocol();
-            protocol2 = new Protocol_1.Protocol();
-            conn1 = new StubConn_1.StubConn();
-            conn2 = new StubConn_1.StubConn();
-            conn1.connect(conn2);
-            protocol1.add(conn1);
-            protocol2.add(conn2);
-            protocol1.on(Protocol_1.PackageType.CHAT, function (data) {
-                expect(Object(data).content).toBe('hello world');
+            conn2.on('data', function (data) {
+                expect(data).toBe('hello world');
                 done();
             });
-            protocol2.emit(Protocol_1.PackageType.CHAT, { content: 'hello world' });
+            conn1.send('hello world');
             return [2 /*return*/];
         });
     }); });
+    it('disconnect', function () {
+        var onClose1 = jest.fn();
+        var onClose2 = jest.fn();
+        conn1.on('close', onClose1);
+        conn2.on('close', onClose2);
+        conn1.disconnect();
+        expect(onClose1).toBeCalled();
+        expect(onClose2).toBeCalled();
+    });
 });
