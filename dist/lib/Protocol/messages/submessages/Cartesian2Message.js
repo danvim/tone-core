@@ -20,16 +20,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var protobufjs_1 = require("protobufjs");
+var Coordinates_1 = require("../../../Coordinates");
 var Cartesian2Message = /** @class */ (function (_super) {
     __extends(Cartesian2Message, _super);
     function Cartesian2Message() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Cartesian2Message.prototype.toCartesian = function () {
+        return new Coordinates_1.Cartesian(this.x, this.z);
+    };
     __decorate([
-        protobufjs_1.Field.d(1, 'int32')
+        protobufjs_1.Field.d(1, 'double')
     ], Cartesian2Message.prototype, "x", void 0);
     __decorate([
-        protobufjs_1.Field.d(2, 'int32')
+        protobufjs_1.Field.d(2, 'double')
     ], Cartesian2Message.prototype, "z", void 0);
     return Cartesian2Message;
 }(protobufjs_1.Message));

@@ -45,4 +45,15 @@ describe('typescript decorators', function () {
         var axial = new Coordinates_1.Axial(q, r);
         expect(AxialMessage_1.default.fromObject(axialMessage.toJSON()).toAxial()).toEqual(axial);
     });
+    it('Reconstruct data from MoveEntityMessage', function () {
+        var obj = {
+            uid: 'some uuid',
+            location: { x: 1.23, y: 5, z: -4.67 },
+            yaw: 0,
+            pitch: 0,
+            velocity: { x: 0.11, y: 0, z: -0.2 },
+        };
+        var moveEntityMessage = messages_1.MoveEntityMessage.create(obj);
+        expect(moveEntityMessage.toJSON()).toStrictEqual(obj);
+    });
 });

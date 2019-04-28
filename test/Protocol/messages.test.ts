@@ -2,7 +2,7 @@ import * as protobuf from 'protobufjs';
 import AttackMessage from '../../lib/Protocol/messages/AttackMessage';
 import { BuildingType } from '../../lib/Game';
 import { Axial } from '../../lib/Coordinates';
-import { BuildMessage } from '../../lib/Protocol/messages';
+import { BuildMessage, MoveEntityMessage } from '../../lib/Protocol/messages';
 import AxialMessage from '../../lib/Protocol/messages/submessages/AxialMessage';
 
 describe('typescript decorators', () => {
@@ -74,5 +74,19 @@ describe('typescript decorators', () => {
     expect(AxialMessage.fromObject(axialMessage.toJSON()).toAxial()).toEqual(
       axial,
     );
+  });
+
+  it('Reconstruct data from MoveEntityMessage', () => {
+    const obj = {
+      uid: 'some uuid',
+      location: { x: 1.23, y: 5, z: -4.67 },
+      yaw: 0,
+      pitch: 0,
+      velocity: { x: 0.11, y: 0, z: -0.2 },
+    };
+
+    const moveEntityMessage = MoveEntityMessage.create(obj);
+
+    expect(moveEntityMessage.toJSON()).toStrictEqual(obj);
   });
 });
