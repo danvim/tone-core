@@ -59,4 +59,17 @@ export default class HexCube implements CoordinatesInterface<HexCube> {
     public tileDistance(t: HexCube): number {
         return (Math.abs(this.x - t.x) + Math.abs(this.y - t.y) + Math.abs(this.z - t.z)) / 2;
     }
+
+    public range(r: number): HexCube[] {
+        const results: HexCube[] = [];
+        for (let x = -r; x <= r; x++) {
+            for (let y = Math.max(-r, -x - r); y <= Math.min(r, -x + r); y++) {
+                const z = -x - y;
+                results.push(
+                  new HexCube(this.x + x, this.y + y, this.z + z),
+                );
+            }
+        }
+        return results;
+    }
 }

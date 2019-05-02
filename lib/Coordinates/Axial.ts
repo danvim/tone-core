@@ -70,6 +70,10 @@ export default class Axial implements CoordinatesInterface<Axial> {
       2
     );
   }
+
+  public range(r: number): Axial[] {
+    return this.toHexCube().range(r).map((c) => c.toAxial());
+  }
 }
 
 export { Axial };
