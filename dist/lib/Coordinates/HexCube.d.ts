@@ -15,4 +15,5 @@ export default class HexCube implements CoordinatesInterface<HexCube> {
     add(hexCube: HexCube): HexCube;
     scale(n: number): HexCube;
     tileDistance(t: HexCube): number;
+    range(r: number): HexCube[];
 }

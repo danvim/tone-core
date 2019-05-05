@@ -13,11 +13,13 @@ export declare enum PackageType {
     TRY_CUSTOMIZE = 10,
     TRY_DEFEND = 11,
     TRY_JOIN_LOBBY = 12,
-    TRY_SET_POLICY = 13,
-    TRY_START_GAME = 14,
-    UPDATE_HEALTH = 15,
-    UPDATE_LOBBY = 16,
-    UPDATE_TILES = 17
+    TRY_SET_JOB = 13,
+    TRY_SET_POLICY = 14,
+    TRY_START_GAME = 15,
+    UPDATE_HEALTH = 16,
+    UPDATE_JOB = 17,
+    UPDATE_LOBBY = 18,
+    UPDATE_TILES = 19
 }
 interface MessageConstructor {
     new (...args: any[]): Message;

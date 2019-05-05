@@ -59,6 +59,9 @@ var Axial = /** @class */ (function () {
             Math.abs(this.r - t.r)) /
             2);
     };
+    Axial.prototype.range = function (r) {
+        return this.toHexCube().range(r).map(function (c) { return c.toAxial(); });
+    };
     Axial.neighbors = [
         new Axial(+1, 0),
         new Axial(+1, -1),

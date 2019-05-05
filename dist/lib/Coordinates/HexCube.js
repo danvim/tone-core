@@ -53,6 +53,16 @@ var HexCube = /** @class */ (function () {
     HexCube.prototype.tileDistance = function (t) {
         return (Math.abs(this.x - t.x) + Math.abs(this.y - t.y) + Math.abs(this.z - t.z)) / 2;
     };
+    HexCube.prototype.range = function (r) {
+        var results = [];
+        for (var x = -r; x <= r; x++) {
+            for (var y = Math.max(-r, -x - r); y <= Math.min(r, -x + r); y++) {
+                var z = -x - y;
+                results.push(new HexCube(this.x + x, this.y + y, this.z + z));
+            }
+        }
+        return results;
+    };
     HexCube.neighbors = [
         new HexCube(+1, -1, 0), new HexCube(+1, 0, -1), new HexCube(0, +1, -1),
         new HexCube(-1, +1, 0), new HexCube(-1, 0, +1), new HexCube(0, -1, +1),

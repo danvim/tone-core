@@ -17,11 +17,13 @@ var PackageType;
     PackageType[PackageType["TRY_CUSTOMIZE"] = 10] = "TRY_CUSTOMIZE";
     PackageType[PackageType["TRY_DEFEND"] = 11] = "TRY_DEFEND";
     PackageType[PackageType["TRY_JOIN_LOBBY"] = 12] = "TRY_JOIN_LOBBY";
-    PackageType[PackageType["TRY_SET_POLICY"] = 13] = "TRY_SET_POLICY";
-    PackageType[PackageType["TRY_START_GAME"] = 14] = "TRY_START_GAME";
-    PackageType[PackageType["UPDATE_HEALTH"] = 15] = "UPDATE_HEALTH";
-    PackageType[PackageType["UPDATE_LOBBY"] = 16] = "UPDATE_LOBBY";
-    PackageType[PackageType["UPDATE_TILES"] = 17] = "UPDATE_TILES";
+    PackageType[PackageType["TRY_SET_JOB"] = 13] = "TRY_SET_JOB";
+    PackageType[PackageType["TRY_SET_POLICY"] = 14] = "TRY_SET_POLICY";
+    PackageType[PackageType["TRY_START_GAME"] = 15] = "TRY_START_GAME";
+    PackageType[PackageType["UPDATE_HEALTH"] = 16] = "UPDATE_HEALTH";
+    PackageType[PackageType["UPDATE_JOB"] = 17] = "UPDATE_JOB";
+    PackageType[PackageType["UPDATE_LOBBY"] = 18] = "UPDATE_LOBBY";
+    PackageType[PackageType["UPDATE_TILES"] = 19] = "UPDATE_TILES";
 })(PackageType = exports.PackageType || (exports.PackageType = {}));
 function getPackageClass(packageType) {
     var className = helper_1.UPPER_SNAKE2UpperCamel(PackageType[packageType]) + 'Message';

@@ -2,8 +2,14 @@ import * as protobuf from 'protobufjs';
 import AttackMessage from '../../lib/Protocol/messages/AttackMessage';
 import { BuildingType } from '../../lib/Game';
 import { Axial } from '../../lib/Coordinates';
-import { BuildMessage, MoveEntityMessage } from '../../lib/Protocol/messages';
+import {
+  BuildMessage,
+  MoveEntityMessage,
+  TrySetJobMessage,
+  UpdateJobMessage,
+} from '../../lib/Protocol/messages';
 import AxialMessage from '../../lib/Protocol/messages/submessages/AxialMessage';
+import { JobPriority, JobNature } from '../../lib/Game/Job';
 
 describe('typescript decorators', () => {
   it('AttackMessage', () => {
