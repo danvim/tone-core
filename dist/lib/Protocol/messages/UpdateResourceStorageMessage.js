@@ -29,13 +29,13 @@ var UpdateResourceStorageMessage = /** @class */ (function (_super) {
         protobufjs_1.Field.d(1, 'string')
     ], UpdateResourceStorageMessage.prototype, "uid", void 0);
     __decorate([
-        protobufjs_1.Field.d(2, 'in32')
+        protobufjs_1.Field.d(2, 'int32')
     ], UpdateResourceStorageMessage.prototype, "struct", void 0);
     __decorate([
-        protobufjs_1.Field.d(3, 'in32')
+        protobufjs_1.Field.d(3, 'int32')
     ], UpdateResourceStorageMessage.prototype, "trainingData", void 0);
     __decorate([
-        protobufjs_1.Field.d(4, 'in32')
+        protobufjs_1.Field.d(4, 'int32')
     ], UpdateResourceStorageMessage.prototype, "primeData", void 0);
     UpdateResourceStorageMessage = __decorate([
         protobufjs_1.Type.d('UpdateResourceStorageMessage')
