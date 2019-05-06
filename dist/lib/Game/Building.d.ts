@@ -17,6 +17,7 @@ export declare enum BuildingType {
 interface BuildingPropertyInterface {
     size: number;
     struct: number;
+    hp: number;
 }
 export declare const BuildingProperty: {
     [k in BuildingType]: BuildingPropertyInterface;

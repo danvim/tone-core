@@ -20,6 +20,7 @@ export enum BuildingType {
 interface BuildingPropertyInterface {
   size: number;
   struct: number;
+  hp: number;
 }
 
 export const BuildingProperty: {
@@ -28,50 +29,62 @@ export const BuildingProperty: {
   [BuildingType.BASE]: {
     size: TileSize.SMALL,
     struct: 0,
+    hp: 1000,
   },
   [BuildingType.SPAWN_POINT]: {
     size: TileSize.SMALL,
     struct: 0,
+    hp: Infinity,
   },
   [BuildingType.STRUCT_GENERATOR]: {
     size: TileSize.SMALL,
     struct: 5,
+    hp: 100,
   },
   [BuildingType.RECLAIMATOR]: {
     size: TileSize.SMALL,
-    struct: 5,
+    struct: 10,
+    hp: 200,
   },
   [BuildingType.BARRACK]: {
     size: TileSize.LARGE,
-    struct: 5,
+    struct: 20,
+    hp: 400,
   },
   [BuildingType.TRAINING_DATA_GENERATOR]: {
     size: TileSize.SMALL,
-    struct: 5,
+    struct: 7,
+    hp: 150,
   },
   [BuildingType.PRIME_DATA_GENERATOR]: {
     size: TileSize.SMALL,
-    struct: 5,
+    struct: 10,
+    hp: 200,
   },
   [BuildingType.SHIELD_GENERATOR]: {
     size: TileSize.SMALL,
-    struct: 5,
+    struct: 20,
+    hp: 300,
   },
   [BuildingType.ATTACK_PLANT]: {
     size: TileSize.SMALL,
     struct: 5,
+    hp: 200,
   },
   [BuildingType.GROWING_PLANT]: {
     size: TileSize.SMALL,
     struct: 5,
+    hp: 200,
   },
   [BuildingType.GROWING_MOTHER]: {
     size: TileSize.SMALL,
     struct: 5,
+    hp: 200,
   },
   [BuildingType.REPAIR_PLANT]: {
     size: TileSize.SMALL,
     struct: 5,
+    hp: 200,
   },
 };
 

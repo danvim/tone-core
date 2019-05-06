@@ -17,3 +17,8 @@ export declare enum EntityType {
     BULLET_1 = 9,
     BULLET_2 = 10
 }
+export declare const EntityProperty: {
+    [type: number]: {
+        hp: number;
+    };
+};

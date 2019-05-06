@@ -21,49 +21,61 @@ exports.BuildingProperty = (_a = {},
     _a[BuildingType.BASE] = {
         size: Tile_1.TileSize.SMALL,
         struct: 0,
+        hp: 1000,
     },
     _a[BuildingType.SPAWN_POINT] = {
         size: Tile_1.TileSize.SMALL,
         struct: 0,
+        hp: Infinity,
     },
     _a[BuildingType.STRUCT_GENERATOR] = {
         size: Tile_1.TileSize.SMALL,
         struct: 5,
+        hp: 100,
     },
     _a[BuildingType.RECLAIMATOR] = {
         size: Tile_1.TileSize.SMALL,
-        struct: 5,
+        struct: 10,
+        hp: 200,
     },
     _a[BuildingType.BARRACK] = {
         size: Tile_1.TileSize.LARGE,
-        struct: 5,
+        struct: 20,
+        hp: 400,
     },
     _a[BuildingType.TRAINING_DATA_GENERATOR] = {
         size: Tile_1.TileSize.SMALL,
-        struct: 5,
+        struct: 7,
+        hp: 150,
     },
     _a[BuildingType.PRIME_DATA_GENERATOR] = {
         size: Tile_1.TileSize.SMALL,
-        struct: 5,
+        struct: 10,
+        hp: 200,
     },
     _a[BuildingType.SHIELD_GENERATOR] = {
         size: Tile_1.TileSize.SMALL,
-        struct: 5,
+        struct: 20,
+        hp: 300,
     },
     _a[BuildingType.ATTACK_PLANT] = {
         size: Tile_1.TileSize.SMALL,
         struct: 5,
+        hp: 200,
     },
     _a[BuildingType.GROWING_PLANT] = {
         size: Tile_1.TileSize.SMALL,
         struct: 5,
+        hp: 200,
     },
     _a[BuildingType.GROWING_MOTHER] = {
         size: Tile_1.TileSize.SMALL,
         struct: 5,
+        hp: 200,
     },
     _a[BuildingType.REPAIR_PLANT] = {
         size: Tile_1.TileSize.SMALL,
         struct: 5,
+        hp: 200,
     },
     _a);
