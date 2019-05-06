@@ -45,4 +45,13 @@ export const EntityProperty: { [type: number]: { hp: number } } = {
   [EntityType.ENEMY_2]: {
     hp: 100,
   },
+  [EntityType.BULLET_0]: {
+    hp: 100,
+  },
+  [EntityType.BULLET_1]: {
+    hp: 100,
+  },
+  [EntityType.BULLET_2]: {
+    hp: 100,
+  },
 };

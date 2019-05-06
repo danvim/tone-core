@@ -40,4 +40,13 @@ exports.EntityProperty = (_a = {},
     _a[EntityType.ENEMY_2] = {
         hp: 100,
     },
+    _a[EntityType.BULLET_0] = {
+        hp: 100,
+    },
+    _a[EntityType.BULLET_1] = {
+        hp: 100,
+    },
+    _a[EntityType.BULLET_2] = {
+        hp: 100,
+    },
     _a);
