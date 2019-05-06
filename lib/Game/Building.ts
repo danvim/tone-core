@@ -99,3 +99,8 @@ export enum ResourceType {
   PRIME_DATA,
   WORKER,
 }
+
+export const TERRITORY_RADIUS: {[k in number]: number} = {
+  [BuildingType.BASE]: 5,
+  [BuildingType.RECLAIMATOR]: 4,
+};

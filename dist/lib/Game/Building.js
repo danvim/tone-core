@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var _a;
+var _a, _b;
 var Tile_1 = require("./Tile");
 var BuildingType;
 (function (BuildingType) {
@@ -86,3 +86,7 @@ var ResourceType;
     ResourceType[ResourceType["PRIME_DATA"] = 2] = "PRIME_DATA";
     ResourceType[ResourceType["WORKER"] = 3] = "WORKER";
 })(ResourceType = exports.ResourceType || (exports.ResourceType = {}));
+exports.TERRITORY_RADIUS = (_b = {},
+    _b[BuildingType.BASE] = 5,
+    _b[BuildingType.RECLAIMATOR] = 4,
+    _b);

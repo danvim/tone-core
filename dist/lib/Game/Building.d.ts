@@ -32,4 +32,7 @@ export declare enum ResourceType {
     PRIME_DATA = 2,
     WORKER = 3
 }
+export declare const TERRITORY_RADIUS: {
+    [k in number]: number;
+};
 export {};
