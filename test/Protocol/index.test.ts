@@ -1,7 +1,7 @@
 // const peerjs = require("peerjs-nodejs");
 import { PackageType, Protocol } from '../../lib/Protocol';
 import { StubConn } from '../StubConn';
-import { FightingStyle } from '../../lib';
+import { FightingStyle, JobPriority, JobNature, ResourceType } from '../../lib';
 let protocol1: Protocol;
 let protocol2: Protocol;
 let conn1: StubConn;
@@ -63,5 +63,22 @@ describe('Protocol', () => {
       done();
     });
     protocol1.emit(PackageType.UPDATE_FIGHTING_STYLE, obj);
+  });
+
+  it('update job', async (done) => {
+    const obj = {
+      jobId: 'jid',
+      buildingId: 'bid',
+      workerIds: ['pid'],
+      priority: JobPriority.HIGH,
+      nature: JobNature.CONSTRUCTION,
+      resourceType: ResourceType.STRUCT,
+    };
+    protocol2.on(PackageType.UPDATE_JOB, (data) => {
+      expect(Object(data).resourceType).toBe(obj.resourceType);
+      console.log(data);
+      done();
+    });
+    protocol1.emit(PackageType.UPDATE_JOB, obj);
   });
 });

@@ -1,7 +1,8 @@
-import { Field, Message } from 'protobufjs';
+import { Field, Message, Type } from 'protobufjs';
 import { JobPriority, JobNature } from '../../Game/Job';
-import { ResourceType } from '../..';
+import { ResourceType } from '../../Game/Building';
 
+@Type.d('UpdateJobMessage')
 export default class UpdateJobMessage extends Message<UpdateJobMessage> {
   @Field.d(1, 'string') public jobId!: string;
   @Field.d(2, 'string') public buildingId!: string;

@@ -108,4 +108,24 @@ describe('Protocol', function () {
             return [2 /*return*/];
         });
     }); });
+    it('update job', function (done) { return __awaiter(_this, void 0, void 0, function () {
+        var obj;
+        return __generator(this, function (_a) {
+            obj = {
+                jobId: 'jid',
+                buildingId: 'bid',
+                workerIds: ['pid'],
+                priority: lib_1.JobPriority.HIGH,
+                nature: lib_1.JobNature.CONSTRUCTION,
+                resourceType: lib_1.ResourceType.STRUCT,
+            };
+            protocol2.on(Protocol_1.PackageType.UPDATE_JOB, function (data) {
+                expect(Object(data).resourceType).toBe(obj.resourceType);
+                console.log(data);
+                done();
+            });
+            protocol1.emit(Protocol_1.PackageType.UPDATE_JOB, obj);
+            return [2 /*return*/];
+        });
+    }); });
 });
