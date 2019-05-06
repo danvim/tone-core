@@ -25,6 +25,7 @@ export enum PackageType {
   UPDATE_TILES,
   TRY_SET_FIGHTING_STYLE,
   UPDATE_FIGHTING_STYLE,
+  UPDATE_RESOURCE_STORAGE,
 }
 
 interface MessageConstructor {

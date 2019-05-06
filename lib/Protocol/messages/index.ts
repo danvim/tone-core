@@ -23,4 +23,7 @@ export {
 } from './UpdateFightingStyleMessage';
 export { default as UpdateJobMessage } from './UpdateJobMessage';
 export { default as UpdateLobbyMessage } from './UpdateLobbyMessage';
+export {
+  default as UpdateResourceStorageMessage,
+} from './UpdateResourceStorageMessage';
 export { default as UpdateTilesMessage } from './UpdateTilesMessage';

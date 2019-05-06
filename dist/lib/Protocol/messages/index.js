@@ -42,5 +42,7 @@ var UpdateJobMessage_1 = require("./UpdateJobMessage");
 exports.UpdateJobMessage = UpdateJobMessage_1.default;
 var UpdateLobbyMessage_1 = require("./UpdateLobbyMessage");
 exports.UpdateLobbyMessage = UpdateLobbyMessage_1.default;
+var UpdateResourceStorageMessage_1 = require("./UpdateResourceStorageMessage");
+exports.UpdateResourceStorageMessage = UpdateResourceStorageMessage_1.default;
 var UpdateTilesMessage_1 = require("./UpdateTilesMessage");
 exports.UpdateTilesMessage = UpdateTilesMessage_1.default;

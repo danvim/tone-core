@@ -26,6 +26,7 @@ var PackageType;
     PackageType[PackageType["UPDATE_TILES"] = 19] = "UPDATE_TILES";
     PackageType[PackageType["TRY_SET_FIGHTING_STYLE"] = 20] = "TRY_SET_FIGHTING_STYLE";
     PackageType[PackageType["UPDATE_FIGHTING_STYLE"] = 21] = "UPDATE_FIGHTING_STYLE";
+    PackageType[PackageType["UPDATE_RESOURCE_STORAGE"] = 22] = "UPDATE_RESOURCE_STORAGE";
 })(PackageType = exports.PackageType || (exports.PackageType = {}));
 function getPackageClass(packageType) {
     var className = helper_1.UPPER_SNAKE2UpperCamel(PackageType[packageType]) + 'Message';

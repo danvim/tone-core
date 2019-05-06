@@ -21,7 +21,8 @@ export declare enum PackageType {
     UPDATE_LOBBY = 18,
     UPDATE_TILES = 19,
     TRY_SET_FIGHTING_STYLE = 20,
-    UPDATE_FIGHTING_STYLE = 21
+    UPDATE_FIGHTING_STYLE = 21,
+    UPDATE_RESOURCE_STORAGE = 22
 }
 interface MessageConstructor {
     new (...args: any[]): Message;
