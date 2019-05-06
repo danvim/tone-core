@@ -1,7 +1,11 @@
 // const peerjs = require("peerjs-nodejs");
 import { PackageType, Protocol } from '../../lib/Protocol';
 import { StubConn } from '../StubConn';
-
+import { FightingStyle } from '../../lib';
+let protocol1: Protocol;
+let protocol2: Protocol;
+let conn1: StubConn;
+let conn2: StubConn;
 describe('Protocol', () => {
   it('Protocol', () => {
     const protocol = new Protocol();
@@ -21,10 +25,10 @@ describe('Protocol', () => {
   });
 
   it('tests with StubConn', async (done) => {
-    const protocol1 = new Protocol();
-    const protocol2 = new Protocol();
-    const conn1 = new StubConn();
-    const conn2 = new StubConn();
+    protocol1 = new Protocol();
+    protocol2 = new Protocol();
+    conn1 = new StubConn();
+    conn2 = new StubConn();
     conn1.connect(conn2);
     protocol1.add(conn1);
     protocol2.add(conn2);
@@ -33,5 +37,31 @@ describe('Protocol', () => {
       done();
     });
     protocol2.emit(PackageType.CHAT, { content: 'hello world' });
+  });
+
+  it('try set fighting style', async (done) => {
+    const obj = {
+      barrackUid: 'some uuid',
+      fightingStyle: FightingStyle.AGGRESSIVE,
+      targetUid: '',
+    };
+    protocol2.on(PackageType.TRY_SET_FIGHTING_STYLE, (data) => {
+      expect(Object(data).barrackUid).toBe(obj.barrackUid);
+      done();
+    });
+    protocol1.emit(PackageType.TRY_SET_FIGHTING_STYLE, obj);
+  });
+
+  it(' fighting style', async (done) => {
+    const obj = {
+      barrackUid: 'some uuid',
+      fightingStyle: FightingStyle.AGGRESSIVE,
+      targetUid: '',
+    };
+    protocol2.on(PackageType.UPDATE_FIGHTING_STYLE, (data) => {
+      expect(Object(data).barrackUid).toBe(obj.barrackUid);
+      done();
+    });
+    protocol1.emit(PackageType.UPDATE_FIGHTING_STYLE, obj);
   });
 });

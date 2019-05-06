@@ -20,21 +20,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var protobufjs_1 = require("protobufjs");
-var Job_1 = require("../../Game/Job");
-var TrySetJobMessage = /** @class */ (function (_super) {
-    __extends(TrySetJobMessage, _super);
-    function TrySetJobMessage() {
+var Game_1 = require("../../Game");
+var TrySetFightingStyle = /** @class */ (function (_super) {
+    __extends(TrySetFightingStyle, _super);
+    function TrySetFightingStyle() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
         protobufjs_1.Field.d(1, 'string')
-    ], TrySetJobMessage.prototype, "jobId", void 0);
+    ], TrySetFightingStyle.prototype, "barrackId", void 0);
     __decorate([
-        protobufjs_1.Field.d(2, Job_1.JobPriority)
-    ], TrySetJobMessage.prototype, "priority", void 0);
-    TrySetJobMessage = __decorate([
-        protobufjs_1.Type.d('TrySetJobMessage')
-    ], TrySetJobMessage);
-    return TrySetJobMessage;
+        protobufjs_1.Field.d(2, Game_1.FightingStyle)
+    ], TrySetFightingStyle.prototype, "fightingStyle", void 0);
+    __decorate([
+        protobufjs_1.Field.d(3, 'string')
+    ], TrySetFightingStyle.prototype, "targetId", void 0);
+    TrySetFightingStyle = __decorate([
+        protobufjs_1.Type.d('TrySetFightingStyle')
+    ], TrySetFightingStyle);
+    return TrySetFightingStyle;
 }(protobufjs_1.Message));
-exports.default = TrySetJobMessage;
+exports.default = TrySetFightingStyle;

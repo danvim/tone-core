@@ -39,6 +39,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // const peerjs = require("peerjs-nodejs");
 var Protocol_1 = require("../../lib/Protocol");
 var StubConn_1 = require("../StubConn");
+var lib_1 = require("../../lib");
+var protocol1;
+var protocol2;
+var conn1;
+var conn2;
 describe('Protocol', function () {
     it('Protocol', function () {
         var protocol = new Protocol_1.Protocol();
@@ -55,7 +60,6 @@ describe('Protocol', function () {
         expect(buf).toBeTruthy();
     });
     it('tests with StubConn', function (done) { return __awaiter(_this, void 0, void 0, function () {
-        var protocol1, protocol2, conn1, conn2;
         return __generator(this, function (_a) {
             protocol1 = new Protocol_1.Protocol();
             protocol2 = new Protocol_1.Protocol();
@@ -69,6 +73,38 @@ describe('Protocol', function () {
                 done();
             });
             protocol2.emit(Protocol_1.PackageType.CHAT, { content: 'hello world' });
+            return [2 /*return*/];
+        });
+    }); });
+    it('try set fighting style', function (done) { return __awaiter(_this, void 0, void 0, function () {
+        var obj;
+        return __generator(this, function (_a) {
+            obj = {
+                barrackUid: 'some uuid',
+                fightingStyle: lib_1.FightingStyle.AGGRESSIVE,
+                targetUid: '',
+            };
+            protocol2.on(Protocol_1.PackageType.TRY_SET_FIGHTING_STYLE, function (data) {
+                expect(Object(data).barrackUid).toBe(obj.barrackUid);
+                done();
+            });
+            protocol1.emit(Protocol_1.PackageType.TRY_SET_FIGHTING_STYLE, obj);
+            return [2 /*return*/];
+        });
+    }); });
+    it(' fighting style', function (done) { return __awaiter(_this, void 0, void 0, function () {
+        var obj;
+        return __generator(this, function (_a) {
+            obj = {
+                barrackUid: 'some uuid',
+                fightingStyle: lib_1.FightingStyle.AGGRESSIVE,
+                targetUid: '',
+            };
+            protocol2.on(Protocol_1.PackageType.UPDATE_FIGHTING_STYLE, function (data) {
+                expect(Object(data).barrackUid).toBe(obj.barrackUid);
+                done();
+            });
+            protocol1.emit(Protocol_1.PackageType.UPDATE_FIGHTING_STYLE, obj);
             return [2 /*return*/];
         });
     }); });

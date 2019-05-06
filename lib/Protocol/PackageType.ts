@@ -23,6 +23,8 @@ export enum PackageType {
   UPDATE_JOB,
   UPDATE_LOBBY,
   UPDATE_TILES,
+  TRY_SET_FIGHTING_STYLE,
+  UPDATE_FIGHTING_STYLE,
 }
 
 interface MessageConstructor {
