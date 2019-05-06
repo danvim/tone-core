@@ -92,3 +92,10 @@ export interface BuildingInterface extends ThingInterface {
   buildingType: BuildingType;
   tilePosition: Axial;
 }
+
+export enum ResourceType {
+  STRUCT,
+  TRAINING_DATA,
+  PRIME_DATA,
+  WORKER,
+}

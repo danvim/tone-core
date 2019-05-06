@@ -21,6 +21,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var protobufjs_1 = require("protobufjs");
 var Job_1 = require("../../Game/Job");
+var __1 = require("../..");
 var UpdateJobMessage = /** @class */ (function (_super) {
     __extends(UpdateJobMessage, _super);
     function UpdateJobMessage() {
@@ -41,6 +42,9 @@ var UpdateJobMessage = /** @class */ (function (_super) {
     __decorate([
         protobufjs_1.Field.d(5, Job_1.JobNature)
     ], UpdateJobMessage.prototype, "nature", void 0);
+    __decorate([
+        protobufjs_1.Field.d(6, __1.ResourceType)
+    ], UpdateJobMessage.prototype, "resourceType", void 0);
     return UpdateJobMessage;
 }(protobufjs_1.Message));
 exports.default = UpdateJobMessage;
