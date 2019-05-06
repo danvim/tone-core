@@ -9,3 +9,4 @@ __export(require("./Race"));
 __export(require("./Tile"));
 __export(require("./AnimType"));
 __export(require("./Entity"));
+__export(require("./Job"));

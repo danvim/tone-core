@@ -11,3 +11,6 @@ export declare enum JobNature {
     STORAGE = 1,
     RECRUITMENT = 2
 }
+export declare const JobQuota: {
+    [priority: number]: number;
+};

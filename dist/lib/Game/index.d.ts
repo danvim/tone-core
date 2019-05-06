@@ -7,3 +7,4 @@ export * from './AnimType';
 export * from './Entity';
 export * from './Thing';
 export * from './Unit';
+export * from './Job';
