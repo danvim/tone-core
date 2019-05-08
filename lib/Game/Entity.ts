@@ -7,6 +7,7 @@ export interface EntityInterface extends ThingInterface {
 }
 
 export enum EntityType {
+  EMPTY,
   WORKER,
   SOLDIER_0,
   SOLDIER_1,
