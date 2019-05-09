@@ -5,17 +5,18 @@ export interface EntityInterface extends ThingInterface {
     rotation: XyzEuler;
 }
 export declare enum EntityType {
-    WORKER = 0,
-    SOLDIER_0 = 1,
-    SOLDIER_1 = 2,
-    SOLDIER_2 = 3,
-    SEED = 4,
-    ENEMY_0 = 5,
-    ENEMY_1 = 6,
-    ENEMY_2 = 7,
-    BULLET_0 = 8,
-    BULLET_1 = 9,
-    BULLET_2 = 10
+    EMPTY = 0,
+    WORKER = 1,
+    SOLDIER_0 = 2,
+    SOLDIER_1 = 3,
+    SOLDIER_2 = 4,
+    SEED = 5,
+    ENEMY_0 = 6,
+    ENEMY_1 = 7,
+    ENEMY_2 = 8,
+    BULLET_0 = 9,
+    BULLET_1 = 10,
+    BULLET_2 = 11
 }
 export declare const EntityProperty: {
     [type: number]: {

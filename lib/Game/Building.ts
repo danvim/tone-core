@@ -102,5 +102,5 @@ export enum ResourceType {
 
 export const TERRITORY_RADIUS: {[k in number]: number} = {
   [BuildingType.BASE]: 5,
-  [BuildingType.RECLAIMATOR]: 4,
+  [BuildingType.RECLAIMATOR]: 3,
 };

@@ -88,5 +88,5 @@ var ResourceType;
 })(ResourceType = exports.ResourceType || (exports.ResourceType = {}));
 exports.TERRITORY_RADIUS = (_b = {},
     _b[BuildingType.BASE] = 5,
-    _b[BuildingType.RECLAIMATOR] = 4,
+    _b[BuildingType.RECLAIMATOR] = 3,
     _b);
